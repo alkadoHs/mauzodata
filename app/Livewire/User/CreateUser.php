@@ -18,6 +18,7 @@ class CreateUser extends Component
     {
         $this->form->store();
 
+        session()->flash('success', 'user created successfully.');
         $this->dispatch('user-created');
     }
 

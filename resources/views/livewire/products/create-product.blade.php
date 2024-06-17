@@ -94,7 +94,7 @@
                     <x-input-error :messages="$errors->get('form.sale_price')" class="mt-2" />
                 </div>
 
-                <div>
+                {{-- <div>
                     <x-input-label for="whole_price" value="{{ __('Whole price') }}" />
     
                     <x-text-input
@@ -122,7 +122,7 @@
                         required
                     />
                     <x-input-error :messages="$errors->get('form.whole_stock')" class="mt-2" />
-                </div>
+                </div> --}}
 
                 <div>
                     <x-input-label for="stock_alert" value="{{ __('Stock alert') }}" />
@@ -151,7 +151,7 @@
                     />
                     <x-input-error :messages="$errors->get('form.expire_date')" class="mt-2" />
                 </div>
-
+{{-- 
                 <div>
                     <x-input-label for="transport" value="{{ __('Transport fee') }}" />
     
@@ -165,7 +165,7 @@
                         required
                     />
                     <x-input-error :messages="$errors->get('form.transport')" class="mt-2" />
-                </div>
+                </div> --}}
             </div>
 
 

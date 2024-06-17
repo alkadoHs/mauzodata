@@ -66,7 +66,7 @@
                     <x-input-error :messages="$errors->get('form.phone')" class="mt-2" />
                 </div>
 
-                <div>
+                {{-- <div>
                     <x-input-label for="branch_id" value="{{ __('Branch') }}" />
     
                     <select name="branch_id" 
@@ -79,7 +79,7 @@
                         @endforeach
                     </select>
                     <x-input-error :messages="$errors->get('form.branch_id')" class="mt-2" />
-                </div>
+                </div> --}}
 
                 <div>
                     <x-input-label for="role" value="{{ __('Permission/role') }}" />
@@ -91,10 +91,10 @@
                             >
                         <option value="">{{ __('Select role')}}</option>
                         <option value="admin">{{ __('Admin')}}</option>
-                        <option value="manager">{{ __('Manager')}}</option>
+                        {{-- <option value="manager">{{ __('Manager')}}</option> --}}
                         <option value="seller">{{ __('Seller')}}</option>
-                        <option value="vendor">{{ __('Vendor')}}</option>
-                        <option value="store_keeper">{{ __('Store Keeper')}}</option>
+                        {{-- <option value="vendor">{{ __('Vendor')}}</option> --}}
+                        {{--<option value="store_keeper">{{ __('Store Keeper')}}</option>--}}
                     </select>
                     <x-input-error :messages="$errors->get('form.role')" class="mt-2" />
                 </div>
@@ -119,7 +119,7 @@
                         wire:model="form.password"
                         id="password"
                         name="password"
-                        type="text"
+                        type="password"
                         class="mt-1 block w-full"
                         placeholder="{{ __('******') }}"
                         required
@@ -134,7 +134,7 @@
                         wire:model="form.password_confirmation"
                         id="password_confirmation"
                         name="password_confirmation"
-                        type="text"
+                        type="password"
                         class="mt-1 block w-full"
                         placeholder="{{ __('******') }}"
                         required

@@ -20,6 +20,14 @@ use function Livewire\Volt\{state};
     
             Dashboard
         </x-sidebar-item>
+
+        <x-sidebar-item :url="route('my-sales')" :active="request()->routeIs('my-sales')">
+            <x-slot:icon>
+                <x-heroicon-o-chart-bar />
+            </x-slot:icon>
+    
+            My Sales
+        </x-sidebar-item>
     
         <x-sidebar-item :url="route('setup')" :active="request()->routeIs('setup')">
             <x-slot:icon>
@@ -45,13 +53,13 @@ use function Livewire\Volt\{state};
             Users (Employees)
         </x-sidebar-item>
     
-        <x-sidebar-item :url="route('customers')" :active="request()->routeIs('customers')">
+        {{-- <x-sidebar-item :url="route('customers')" :active="request()->routeIs('customers')">
             <x-slot:icon>
                 <x-heroicon-o-user />
             </x-slot:icon>
     
             Customers
-        </x-sidebar-item>
+        </x-sidebar-item> --}}
     
         <x-sidebar-item :url="route('pos')" :active="request()->routeIs('pos')">
             <x-slot:icon>
@@ -69,7 +77,7 @@ use function Livewire\Volt\{state};
             {{__('Invoices')}}
         </x-sidebar-item>
     
-        <x-sidebar-item :url="route('pending-orders')" :active="request()->routeIs('pending-orders')">
+        {{-- <x-sidebar-item :url="route('pending-orders')" :active="request()->routeIs('pending-orders')">
             <x-slot:icon>
                 <x-heroicon-o-shopping-bag />
             </x-slot:icon>
@@ -83,6 +91,13 @@ use function Livewire\Volt\{state};
             </x-slot:icon>
     
             {{__('Credit sales')}}
+        </x-sidebar-item> 
+        <x-sidebar-item :url="route('stock-transfer')" :active="request()->routeIs('stock-transfer')">
+            <x-slot:icon>
+                <x-heroicon-o-receipt-refund />
+            </x-slot:icon>
+    
+            {{__('Stock transfer')}}
         </x-sidebar-item>
     
          <x-sidebar-item :url="route('expenses')" :active="request()->routeIs('expenses')">
@@ -91,15 +106,8 @@ use function Livewire\Volt\{state};
             </x-slot:icon>
     
             {{__('Expenses')}}
-        </x-sidebar-item>
+        </x-sidebar-item> --}}
     
-        <x-sidebar-item :url="route('stock-transfer')" :active="request()->routeIs('stock-transfer')">
-            <x-slot:icon>
-                <x-heroicon-o-receipt-refund />
-            </x-slot:icon>
-    
-            {{__('Stock transfer')}}
-        </x-sidebar-item>
     
         <x-sidebar-item :url="route('new-stock')" :active="request()->routeIs('new-stock')">
             <x-slot:icon>

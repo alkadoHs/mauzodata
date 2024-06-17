@@ -21,7 +21,7 @@
                     <livewire:products.filters.filter-product-by-branch />
                     
 
-                    <x-dropdown align="right" width="48">
+                    {{-- <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <x-icon-button class="p-0.5" title="{{ __('Import products from another branch')}}">
                                 <x-heroicon-o-folder-arrow-down class="size-6" />
@@ -44,7 +44,7 @@
                                 </x-dropdown-link>
                             </button>
                         </x-slot>
-                    </x-dropdown>
+                    </x-dropdown> --}}
                 </div>
             </div>
         </div>
@@ -58,8 +58,8 @@
                         <th class="md__th text-right">{{__('Stock')}}</th>
                         <th class="md__th text-right">{{__('Buying price')}}</th>
                         <th class="md__th text-right">{{__('Selling price')}}</th>
-                        <th class="md__th text-right">{{__('Whole price')}}</th>
-                        <th class="md__th text-right">{{__('Whole stock')}}</th>
+                        {{-- <th class="md__th text-right">{{__('Whole price')}}</th>
+                        <th class="md__th text-right">{{__('Whole stock')}}</th> --}}
                         <th class="md__th text-right">{{__('Stock alert')}}</th>
                         <th class="md__th text-left"></th>
                     </tr>
@@ -76,8 +76,8 @@
                             <td class="md__td text-right">{{ number_format($product->stock, 2) }}</td>
                             <td class="md__td text-right">{{ number_format($product->buy_price, 2) }}</td>
                             <td class="md__td text-right">{{ number_format($product->sale_price, 2) }}</td>
-                            <td class="md__td text-right">{{ number_format($product->whole_price, 2) }}</td>
-                            <td class="md__td text-right">{{ number_format($product->whole_stock, 2) }}</td>
+                            {{-- <td class="md__td text-right">{{ number_format($product->whole_price, 2) }}</td>
+                            <td class="md__td text-right">{{ number_format($product->whole_stock, 2) }}</td> --}}
                             <td class="md__td text-right">{{ number_format($product->stock_alert, 2) }}</td>
                             <td class="md__td">
                                 <div class="flex items-center gap-3">

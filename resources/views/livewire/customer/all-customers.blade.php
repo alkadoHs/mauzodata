@@ -14,7 +14,7 @@
                     </button>
                 </div>
 
-                <div class="flex items-center shrink-0 gap-4 lg:justify-end">
+                {{-- <div class="flex items-center shrink-0 gap-4 lg:justify-end">
                     <x-secondary-button>Filter by branch</x-secondary-button>
                     
 
@@ -42,7 +42,7 @@
                             </button>
                         </x-slot>
                     </x-dropdown>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="md__table_wrapper" wire:lazy>

@@ -10,14 +10,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 justify-between gap-4">
                 <div class="flex shrink-0 items-center gap-3 overflow-y-auto whitespace-nowrap">
                     <button class="rounded-2xl cursor-pointer select-none dark:text-gray-950 bg-green-400 px-4 py-1 text-sm">
-                       All. {{ number_format($total) }}
+                       All users. {{ number_format($total) }}
                     </button>
-                    <x-filter-tab variant="warning" wire:lazy>Low. 0</x-filter-tab>
-                    <x-filter-tab variant="danger" wire:lazy>Exp. 67</x-filter-tab>
-                    <x-filter-tab wire:lazy>Empty. 6</x-filter-tab>
                 </div>
 
-                <div class="flex items-center shrink-0 gap-4 lg:justify-end">
+                {{-- <div class="flex items-center shrink-0 gap-4 lg:justify-end">
                     <x-secondary-button>Filter by branch</x-secondary-button>
                     
 
@@ -45,7 +42,7 @@
                             </button>
                         </x-slot>
                     </x-dropdown>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="md__table_wrapper" wire:lazy>
@@ -79,7 +76,7 @@
                             <td class="md__td">{{ $user->email }}</td>
                             <td class="md__td">{{ $user?->branch?->name ?? "-" }}</td>
                             <td class="md__td uppercase">{{ $user?->role }}</td>
-                            <td class="md__td">{{ $user->isAdmin }}</td>
+                            <td class="md__td">{{ $user->isAdmin ? "active" : 'blocked' }}</td>
                             <td class="md__td">
                                 <div class="flex items-center gap-3">
                                     <livewire:user.edit-user :user="$user" :key="$user->id"  />

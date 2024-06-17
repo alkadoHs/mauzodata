@@ -64,7 +64,7 @@
                             <th class="md__th text-right" title="sales total">{{__('Sales total')}}</th>
                             <th class="md__th text-right" title="Average sales quantity">{{ __('A.S.Qty')}}</th>
                             <th class="md__th text-right" title="Average sales total">{{ __('A.S.Total')}}</th>
-                            <th class="md__th text-right" title="Transfered products">{{ __('Transfers')}}</th>
+                            {{-- <th class="md__th text-right" title="Transfered products">{{ __('Transfers')}}</th> --}}
                             <th class="md__th text-right" title="Prev stock">{{ __('Prev Stock')}}</th>
                         </tr>
                     </thead>
@@ -83,7 +83,7 @@
                                 <td class="md__td text-right">{{ number_format($product->order_items_sum_total, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_avg_qty, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_avg_total, 2) }}</td>
-                                <td class="md__td text-right">{{ number_format($product->stock_transfer_items_sum_stock, 2) }}</td>
+                                {{-- <td class="md__td text-right">{{ number_format($product->stock_transfer_items_sum_stock, 2) }}</td> --}}
                                  <td class="md__td text-right">{{ number_format($product->stock + $product->order_items_sum_qty + $product->stock_transfer_items_sum_stock, 2) }}</td>
                             </tr>
                             @endforeach

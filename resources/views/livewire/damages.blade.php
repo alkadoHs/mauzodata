@@ -22,13 +22,13 @@
                 </div>
 
                 <div class="flex items-center shrink-0 gap-4 lg:justify-end">
-                    <livewire:products.filters.filter-product-by-branch />
+                    {{-- <livewire:products.filters.filter-product-by-branch /> --}}
 
                     <x-text-input type="date" name="date" wire:model.live.debounce.2000ms="date" />
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <x-icon-button class="p-0.5" title="{{ __('Import damages from another branch')}}">
+                            <x-icon-button class="p-0.5" title="{{ __('filters')}}">
                                 <x-heroicon-o-funnel class="size-6" />
                             </x-icon-button>
                         </x-slot>

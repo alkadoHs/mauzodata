@@ -50,7 +50,7 @@
                         @endif
                     </div>
 
-                    <div class="flex items-center shrink-0 gap-4 lg:justify-end">
+                    {{-- <div class="flex items-center shrink-0 gap-4 lg:justify-end">
                         <select name="branch_id" 
                                 wire:model.live="branch_id"
                                 class="w-full py-1.5 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-teal-500 dark:focus:border-teal-600 focus:ring-teal-500 dark:focus:ring-teal-600 rounded-md shadow-sm"
@@ -84,7 +84,7 @@
                                 </button>
                             </x-slot>
                         </x-dropdown>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="md__table_wrapper" wire:lazy>

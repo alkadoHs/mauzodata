@@ -21,7 +21,7 @@ $products = computed(function () {
 
     return Product::where('name', 'LIKE', "%{$this->search}%")
                      ->whereNotIn('id', $productsExistsToCart)
-                     ->paginate(3);
+                     ->paginate(5);
 });
 
 
@@ -136,8 +136,8 @@ $completeOrder = function (): void {
                     <th class="1 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Product')}}</th>
                     <th class="1 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Stock')}}</th>
                     <th class="1 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Selling price')}}</th>
-                    <th class="1 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('W.Price')}}</th>
-                    <th class="1 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('W.Stock')}}</th>
+                    {{-- <th class="1 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('W.Price')}}</th>
+                            <th class="1 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('W.Stock')}}</th> --}}
                 </tr>
             </thead>
             <tbody class="text-gray-600 dark:text-gray-400">
@@ -152,8 +152,8 @@ $completeOrder = function (): void {
                             {{ number_format($product->stock,2)}}
                         </td>
                         <td class="p-1 text-sm text-right border dark:border-gray-700">{{ number_format($product->sale_price ) }}</td>
-                        <td class="p-1 text-sm text-right border dark:border-gray-700">{{ number_format($product->whole_price) }}</td>
-                        <td class="p-1 text-sm text-right border dark:border-gray-700 uppercase">{{ number_format($product->whole_stock, 2) }}</td>
+                        {{-- <td class="p-1 text-sm text-right border dark:border-gray-700">{{ number_format($product->whole_price) }}</td>
+                        <td class="p-1 text-sm text-right border dark:border-gray-700 uppercase">{{ number_format($product->whole_stock, 2) }}</td> --}}
                     </tr>
                 @endforeach
             </tbody>
@@ -182,14 +182,14 @@ $completeOrder = function (): void {
 
             <livewire:pos.cart-update-payment-method />
 
-            <livewire:pos.cart-update-status />
+             {{-- <livewire:pos.cart-update-status /> 
 
             <div>
                 <label for="transportFee" class="inline-flex items-center">
                     <input id="transportFee" wire:model="transportFee" wire:change="chargeTransport" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-teal-600 shadow-sm focus:ring-teal-500 dark:focus:ring-teal-600 dark:focus:ring-offset-gray-800" name="transportFee">
                     <span class="ms-2  text-gray-600 dark:text-gray-400">{{ __('Charge transport fee?') }}</span>
                 </label>
-            </div>
+            </div> --}}
 
             <div class="flex justify-center">
                 <button class="flex gap-2 items-center bg-cyan-600 text-white px-6 py-3 rounded-3xl hover:bg-cyan-500 hover:scale-x-105 transition-all duration-150 disabled:bg-cyan-600/20 disabled:text-white/50"

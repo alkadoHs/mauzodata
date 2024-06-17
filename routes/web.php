@@ -9,6 +9,7 @@ use App\Livewire\Dashboard;
 use App\Livewire\Expenses;
 use App\Livewire\InvoiceDetail;
 use App\Livewire\Invoices;
+use App\Livewire\MySales;
 use App\Livewire\NewStocks;
 use App\Livewire\NewStocks\AllNewStocks;
 use App\Livewire\NewStocks\NewStockDetail;
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use function Spatie\LaravelPdf\Support\pdf;
 
-Route::view('/', 'welcome');
+Route::redirect('/', '/login');
 
 Route::get('/pdf', function () {
      $data = ['name' => 'John Doe'];
@@ -40,6 +41,10 @@ Route::get('/pdf', function () {
 Route::get('dashboard', Dashboard::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::get('my-sales', MySales::class)
+    ->middleware(['auth', 'verified'])
+    ->name('my-sales');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

@@ -21,12 +21,12 @@ class UserForm extends Form
     public ?string $phone = '';
 
     #[Validate('required')]
-    public ?int $branch_id;
+    public ?int $branch_id = null;
 
     #[Validate('required')]
     public ?string $role = '';
 
-    #[Validate('image|max:1024')] // 1MB max
+    #[Validate('nullable|image|max:1024')] // 1MB max
     public $avatar;
 
     #[Validate('required|string|confirmed|min:6')]
@@ -37,7 +37,12 @@ class UserForm extends Form
 
     public function store(): void
     {
-        $avatarUrl = $this->avatar->storePublicly(path: 'avatars');
+        $avatarUrl = null;
+
+        if ($this->branch_id)
+            $avatarUrl = $this->avatar?->storePublicly(path: 'avatars');
+
+        $this->branch_id = auth()->user()->branch_id;
 
         $this->validate();
 

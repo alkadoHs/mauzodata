@@ -26,7 +26,7 @@
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>
 
-                <p class="text-xl text-teal-700">Mauzodata Sales Innovation</p>
+                <p class="text-xl text-teal-700">Hekima Beauty System</p>
             </div>
 
             <div class="w-full sm:max-w-sm mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
