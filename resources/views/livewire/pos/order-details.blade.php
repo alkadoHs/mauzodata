@@ -78,8 +78,15 @@ $deleteCustomer = function () {
     auth()->user()->cart->customer->delete();
 
     $this->redirect(route('pos'), navigate:true);
-}
+};
 
+$completeOrder = function () {
+    //take all cart and cartItems and add them to order& items respectively
+
+    //decrement the product's stock
+
+    //delete the cart
+};
 ?>
 
 <div class="pb-4">
@@ -149,10 +156,11 @@ $deleteCustomer = function () {
         <div class="flex justify-center">
             <button class="flex gap-2 items-center bg-indigo-600 text-white px-6 py-3 rounded-3xl hover:bg-indigo-500 hover:scale-x-105 transition-all duration-150 disabled:bg-indigo-600/20 disabled:text-white/50"
                     wire:loading.attr="disabled"
+                    wire:click="completeOrder()"
             >
-            <span>{{__('Complete order')}}</span>
-            <x-heroicon-m-arrow-path wire:loading class="size-4 animate-spin text-teal-500" />
-        </button>
+                <span>{{__('Complete order')}}</span>
+                <x-heroicon-m-arrow-path wire:loading class="size-4 animate-spin text-teal-500" />
+            </button>
         </div>
     </div>
 </div>

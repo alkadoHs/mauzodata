@@ -19,7 +19,7 @@ class CartItems extends Component
     #[On('cartItem-updated')]
     public function cartItems(): Collection
     {
-        return CartItem::whereRelation('cart', 'user_id', auth()->id())->get();
+        return CartItem::with('product')->whereRelation('cart', 'user_id', auth()->id())->get();
     }
 
     public function updateItem(CartItem $item, $quantity)
