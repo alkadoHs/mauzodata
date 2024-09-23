@@ -61,7 +61,7 @@ $updateDueDate = function () {
     </div>
 
     @if ($status == 'pending')
-        <div class="space-y-1 w-full text-amber-500">
+        <div class="space-y-1 w-full text-amber-500" wire:transition>
             <x-input-label for="vendor" value="{{ __('Vendor') }}" />
             <select name="vendor_id"
                 wire:model="vendor_id"
@@ -77,7 +77,7 @@ $updateDueDate = function () {
     @endif
 
     @if ($status == 'credit')
-        <div class="space-y-1 w-full text-amber-500">
+        <div class="space-y-1 w-full text-amber-500" wire:transition>
             <x-input-label for="due_date" value="{{ __('Due date') }}" />
             <x-text-input type="date"
                           wire:model="due_date"
