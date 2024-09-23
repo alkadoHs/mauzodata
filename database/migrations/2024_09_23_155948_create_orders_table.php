@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('due_date')->nullable();
             $table->string('status')->default('paid');
             $table->boolean('transportFee')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
