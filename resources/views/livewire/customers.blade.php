@@ -6,6 +6,6 @@
     </x-slot>
 
     <div class="py-6">
-        {{-- <livewire:user.all-users /> --}}
+        <livewire:customer.all-customers />
     </div>
 </div>
