@@ -30,7 +30,7 @@ $updateCartItem = function () {
         if($this->qty > $product->whole_stock) {
             $this->cartItem->update(['qty' => $this->qty, 'price' => $product->whole_price]);
         } else {
-            $this->cartItem->update(['qty' => $this->qty]);
+            $this->cartItem->update(['qty' => $this->qty, 'price' => $product->sale_price]);
         }
     }
 
@@ -40,9 +40,10 @@ $updateCartItem = function () {
 ?>
 
 <div>
-    <x-text-input type="number" 
+    <input type="number" 
+        class="py-0.5 max-w-24 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-teal-500 dark:focus:border-teal-600 focus:ring-teal-500 dark:focus:ring-teal-600 rounded-md shadow-sm"
         wire:model.live.debounce.1000ms="qty"
         wire:blur="updateCartItem"
-        class="max-w-20 py-0" />
+        class="max-w-24 py-0" />
     <x-input-error :messages="$errors->get('qty')" class="mt-1" />
 </div>

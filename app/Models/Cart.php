@@ -18,7 +18,7 @@ class Cart extends Model
         'vendor_id',
         'sale_date',
         'due_date',
-        'isCredit',
+        'status',
         'transportFee',
     ];
 

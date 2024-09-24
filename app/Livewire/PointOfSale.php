@@ -10,6 +10,8 @@ class PointOfSale extends Component
     #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.point-of-sale');
+        return view('livewire.point-of-sale', [
+            'totalItems' => auth()->user()->cartItems()->count(),
+        ]);
     }
 }

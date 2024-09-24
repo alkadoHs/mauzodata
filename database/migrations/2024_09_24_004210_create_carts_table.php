@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('customer_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('customer_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('vendor_id')->nullable()->constrained('users')->restrictOnDelete();
             $table->foreignId('payment_method_id')->nullable()->constrained()->restrictOnDelete();
             $table->dateTime('sale_date')->default(today());
             $table->date('due_date')->nullable();
-            $table->boolean('isCredit')->default(false);
+            $table->string('status')->default('paid');
             $table->boolean('transportFee')->default(false);
             $table->timestamps();
         });

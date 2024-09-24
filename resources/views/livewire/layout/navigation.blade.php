@@ -30,7 +30,7 @@ $logout = function (Logout $logout) {
                 </div>
             </div>
 
-            <div class="pl-4 flex-1 flex justify-end md:justify-between items-center bg-white dark:bg-transparent">
+            <div class="pl-4 flex-1 flex justify-end md:justify-between items-center dark:bg-transparent">
                 <x-text-input type="search" class="hidden md:block" placeholder="Search invoices..." />
 
                 <div class="flex items-center gap-3">
@@ -40,7 +40,9 @@ $logout = function (Logout $logout) {
                     <a href="{{ route('pos') }}" wire:navigate
                       class="relative inline-block p-2"
                     >
-                        <span class="absolute bg-green-500 flex items-center justify-center text-white text-xs size-5 rounded-full top-0 right-0 p-1">10</span>
+                        <span class="absolute bg-green-500 flex items-center justify-center text-white text-xs size-5 rounded-full top-0 right-0 p-1">
+                            {{ auth()->user()->cartItems()->count() }}
+                        </span>
                         <x-heroicon-o-shopping-cart class="size-6" />
                     </a>
                 </div>
