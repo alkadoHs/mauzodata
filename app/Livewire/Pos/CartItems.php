@@ -16,9 +16,17 @@ class CartItems extends Component
     #[Computed]
     #[On('cartItem-deleted')]
     #[On('added-to-cart')]
+    #[On('cartItem-updated')]
     public function cartItems(): Collection
     {
         return CartItem::whereRelation('cart', 'user_id', auth()->id())->get();
+    }
+
+    public function updateItem(CartItem $item, $quantity)
+    {
+        $item->update(['qty' => $quantity]);
+
+        $this->dispatch('cartItem-updated');
     }
 
     public function deleteItem(CartItem $item)

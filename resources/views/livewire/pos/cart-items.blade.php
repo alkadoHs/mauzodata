@@ -23,14 +23,12 @@
                             {{ $item?->product?->name }}
                     </td>
                     <td class="p-1.5 text-sm border dark:border-gray-700">
-                        <x-text-input type="number" 
-                                      wire:model.live.debounce.1000ms="qty"
-                                      class="max-w-20 py-0" />
+                        <livewire:pos.update-cart-item :item="$item" :key="$item->id" />
                     </td>
                     <td class="p-1.5 text-sm text-right border dark:border-gray-700">{{ number_format($item->price,2 ) }}</td>
                     <td class="p-1.5 text-sm text-right border dark:border-gray-700">{{ number_format($item->price * $item->qty) }}</td>
-                    <td class="p-1.5 text-sm text-right border dark:border-gray-700 uppercase">{{ number_format($item?->transport) }}</td>
-                    <td class="p-1.5 text-sm text-right border dark:border-gray-700">{{ $item?->product?->whole_stock > 0 ? 'whole' : 'retail' }}</td>
+                    <td class="p-1.5 text-sm text-right border dark:border-gray-700 uppercase">{{ number_format($item->transport * $item->qty) }}</td>
+                    <td class="p-1.5 text-sm text-right border dark:border-gray-700">{{ $item->qty > $item->product->whole_stock ? 'whole' : 'retail' }}</td>
                     <td class="p-1.5 text-sm text-right border dark:border-gray-700">
                         <div class="flex items-center gap-3">
                             {{--<livewire:item.edit-item :item="$item" :key="$item->id"  />--}}
