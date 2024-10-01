@@ -17,8 +17,17 @@ use App\Livewire\StockTransfers;
 use App\Livewire\SystemSetup;
 use App\Livewire\Users;
 use Illuminate\Support\Facades\Route;
+use function Spatie\LaravelPdf\Support\pdf;
 
 Route::view('/', 'welcome');
+
+Route::get('/pdf', function () {
+     $data = ['name' => 'John Doe'];
+
+        return pdf()
+            ->view('pdf', $data)
+            ->name('invoice-2023-04-10.pdf');
+});
 
 Route::get('dashboard', Dashboard::class)
     ->middleware(['auth', 'verified'])
