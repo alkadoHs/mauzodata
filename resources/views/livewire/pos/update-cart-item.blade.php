@@ -21,6 +21,8 @@ mount(function (CartItem $item) {
 });
 
 $updateCartItem = function () {
+    $this->validate();
+    
     $product = Product::find($this->cartItem->product_id);
 
     if($product->stock < $this->qty) {

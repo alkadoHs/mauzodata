@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('transport')->default(0);
             $table->decimal('total', 11)->virtualAs('qty * price');
             $table->decimal('total_transport', 11)->virtualAs('qty * transport');
-            $table->decimal('profit', 11)->virtualAs('price - buy_price * qty');
+            $table->decimal('profit', 11)->virtualAs('(price - buy_price) * qty');
             $table->softDeletes();
             $table->timestamps();
         });

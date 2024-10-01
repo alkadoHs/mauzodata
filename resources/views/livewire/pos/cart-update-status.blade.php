@@ -7,8 +7,8 @@ use function Livewire\Volt\{state, computed, mount};
 
 state([
     'status' => auth()->user()?->cart?->status,
-    'vendor_id' => auth()->user()?->cart->vendor_id,
-    'due_date' => auth()->user()?->cart->due_date,
+    'vendor_id' => auth()->user()?->cart?->vendor_id,
+    'due_date' => auth()->user()?->cart?->due_date,
 ]);
 
 $vendors = computed(function () {
