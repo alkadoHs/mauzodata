@@ -7,6 +7,8 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AllUsers extends Component
 {
@@ -32,6 +34,10 @@ class AllUsers extends Component
         $user->delete();
 
         $this->dispatch('user-deleted');
+    }
+
+    public function download() {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
     
     public function render()

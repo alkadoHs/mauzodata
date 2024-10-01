@@ -37,7 +37,7 @@
                             </button>
 
                             <!-- Authentication -->
-                            <button wire:confirm="We are working on this feature." class="w-full text-start">
+                            <button wire:click="download" wire:confirm="We are working on this feature." class="w-full text-start">
                                 <x-dropdown-link>
                                     <x-heroicon-m-document-text class="size-4 text-teal-400 mr-2" />
                                     {{ __('Import from excel') }}
