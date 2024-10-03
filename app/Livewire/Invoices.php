@@ -5,11 +5,12 @@ namespace App\Livewire;
 use App\Models\Branch;
 use App\Models\Order;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
+
+use function Spatie\LaravelPdf\Support\pdf ;
 
 class Invoices extends Component
 {

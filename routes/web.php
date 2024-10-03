@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use App\Livewire\CreditSales;
 use App\Livewire\Customers;
 use App\Livewire\Damages;
@@ -55,6 +56,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('damages', Damages::class)->name('damages');
     Route::get('reports', Reports::class)->name('reports');
 });
+
+Route::get('export/invoices', [ExportController::class, 'invoices'])
+    ->name('export.invoices')
+    ->middleware('auth');
 
 
 require __DIR__.'/auth.php';

@@ -70,12 +70,10 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <button class="w-full text-start">
-                                    <x-dropdown-link>
-                                        <x-heroicon-m-printer class="size-4 mr-2 text-orange-400" />
-                                        {{ __('Download PDF') }}
-                                    </x-dropdown-link>
-                                </button>
+                                <x-dropdown-link :href="route('export.invoices', ['from_date' => $from_date, 'to_date' => $to_date, 'branch_id' => $branch_id])">
+                                    <x-heroicon-m-printer class="size-4 mr-2 text-orange-400" />
+                                    {{ __('Download PDF') }}
+                                </x-dropdown-link>
 
                                 <!-- Authentication -->
                                 <button class="w-full text-start">
