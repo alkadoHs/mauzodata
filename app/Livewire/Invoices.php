@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Branch;
 use App\Models\Order;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
@@ -15,6 +16,9 @@ class Invoices extends Component
     use WithPagination;
 
     public ?string $search = null;
+    
+    #[Url()]
+    public ?int $branch_id = null;
 
     #[Url()]
     public ?string $from_date = null;
@@ -44,7 +48,10 @@ class Invoices extends Component
     {
         $invoices = Order::query()
                         ->when($this->search, function (Builder $query) {
-                            $query->where('id', 'LIKE', "{$this->search}%");
+                            $query->where('id',$this->search);
+                        })
+                        ->when($this->branch_id, function (Builder $query) {
+                            $query->where('branch_id', $this->branch_id);
                         })
                         ->when($this->from_date && !$this->to_date, function (Builder $query) {
                             $query->where('created_at', '>=', $this->from_date);
@@ -66,6 +73,7 @@ class Invoices extends Component
             'credit' => Order::where('status', 'credit')->count(),
             'paid' => Order::where('status', 'paid')->count(),
             'invoices' => $invoices,
+            'branches' => Branch::get(),
         ]);
     }
 }
