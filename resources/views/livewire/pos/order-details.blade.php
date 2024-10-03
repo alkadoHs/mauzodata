@@ -30,6 +30,11 @@ $products = computed(function () {
 $addToCart = function (Product $product) {
     $cartExists = auth()->user()->cart;
 
+    if ($product->stock <= 0) {
+        session()->flash('error', 'Stock is not enough.');
+        return $this->redirect(route('pos'), navigate:true);
+    }
+
     if ($cartExists) {
         $cartExists->cartItems()->create([
             'product_id' => $product->id,

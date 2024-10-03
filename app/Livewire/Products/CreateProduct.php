@@ -13,7 +13,7 @@ class CreateProduct extends Component
     {
         $this->form->store();
 
-        session()->flash('Created successfully.');
+        session()->flash('success', 'Created successfully.');
 
         $this->dispatch('product-created');
     }

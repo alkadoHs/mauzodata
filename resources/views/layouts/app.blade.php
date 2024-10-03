@@ -36,6 +36,19 @@
                 <main class="px-4 max-w-full">
                     {{ $slot }}
                 </main>
+
+                @session('success')
+                <div class="z-50 absolute bottom-4 right-4 p-3 rounded-lg text-green-700 bg-green-300/30" wire:transition>
+                    {{ $value }}
+                </div>
+                @endsession
+
+
+                @session('error')
+                <div class="z-50 absolute bottom-4 right-4 p-3 rounded-lg text-red-700 bg-red-300/30" wire:transition>
+                    {{ $value }}
+                </div>
+                @endsession
             </div>
         </div>
     </body>

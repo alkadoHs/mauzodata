@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\CompanyScope;
+use App\Observers\OrderObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+#[ScopedBy(CompanyScope::class)]
+#[ObservedBy(OrderObserver::class)]
 class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
+        'branch_id',
         'customer_id',
         'payment_method_id',
         'vendor_id',
@@ -27,6 +34,11 @@ class Order extends Model
         return [
             'transportFee' => 'boolean',
         ];
+    }
+
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
     }
 
     public function user(): BelongsTo
