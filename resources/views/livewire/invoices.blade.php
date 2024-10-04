@@ -8,19 +8,46 @@
     <section>
         <div class="sm:px-6 lg:px-4 space-y-6">
             <div class="my-2 space-y-4">
-                <div class="flex justify-between gap-4">
+                <div class="flex justify-between flex-wrap gap-4">
                     <x-text-input type="search" name="search" wire:model.live.debounce.1000ms="search" placeholder="Search invoice ..." />
                     
-                    {{--<livewire:invoices.create-invoice />--}}
+                    <div class="flex gap-2 items-center">
+                        <x-text-input type="date" name="from-date" wire:model.live.debounce.1000ms="from_date" />
+                        <span>-</span>
+                        <x-text-input type="date" name="to-date" wire:model.live.debounce.1000ms="to_date" />
+                    </div>
                 </div>
         
                 <div class="grid grid-cols-1 lg:grid-cols-2 justify-between gap-4">
                     <div class="flex shrink-0 items-center gap-3 overflow-y-auto whitespace-nowrap">
-                        <button class="rounded-2xl cursor-pointer select-none dark:text-gray-950 bg-green-400 px-4 py-1 text-sm">
-                        All. {{ number_format($total) }}
-                        </button>
-                        <x-filter-tab variant="warning" wire:lazy>pending. {{ number_format($pending) }}</x-filter-tab>
-                        <x-filter-tab variant="danger" wire:lazy>credit. {{ number_format($credit) }}</x-filter-tab>
+                        @if ($from_date || $to_date)
+                            <x-filter-tab variant="success"> 
+                                @if ($from_date && !$to_date) 
+                                    <div class="flex gap-1.5 items-center">
+                                        <span>From: {{ date('d/m/Y',strtotime($from_date)) }}</span>
+                                        <x-heroicon-m-x-mark class="size-4 cursor-pointer p-0.5 bg-transparent/50 hover:bg-transparent/70 rounded-xl" 
+                                                             wire:click="clearFromDate"
+                                        />
+                                    </div>
+                                @elseif ($to_date && !$from_date)
+                                    <div class="flex gap-1.5 items-center">
+                                        <span>To: {{ date('d/m/Y',strtotime($to_date)) }}</span> 
+                                        <x-heroicon-m-x-mark class="size-4 cursor-pointer p-0.5 bg-transparent/50 hover:bg-transparent/70 rounded-xl"
+                                                             wire:click="clearToDate"
+                                         />
+                                    </div>
+                                @elseif ($from_date && $to_date) 
+                                    <div class="flex gap-1.5 items-center">
+                                        <span>Date: {{ date('d/m/Y',strtotime($from_date)) }} - {{ date('d/m/Y',strtotime($to_date))  }}</span>
+                                        <x-heroicon-m-x-mark class="size-4 cursor-pointer p-0.5 bg-transparent/50 hover:bg-transparent/70 rounded-xl"
+                                                             wire:click="clearAlldates" 
+                                        />
+                                    </div>
+                                @else
+                                    <span>All invoices ({{ $invoices->total() }})</span>
+                                @endif
+                            </x-filter-tab>
+                        @endif
                     </div>
 
                     <div class="flex items-center shrink-0 gap-4 lg:justify-end">
@@ -30,23 +57,23 @@
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <x-icon-button class="p-0.5" title="{{ __('Import invoices from another branch')}}">
-                                    <x-heroicon-o-folder-arrow-down class="size-6" />
+                                    <x-heroicon-o-cloud-arrow-down class="size-6" />
                                 </x-icon-button>
                             </x-slot>
 
                             <x-slot name="content">
-                                <button>
-                                    <x-dropdown-link class="w-full text-start" >
-                                        <x-heroicon-m-arrow-right-circle class="size-4 mr-2" />
-                                        {{ __('Import from branch') }}
+                                <button class="w-full text-start">
+                                    <x-dropdown-link>
+                                        <x-heroicon-m-printer class="size-4 mr-2 text-orange-400" />
+                                        {{ __('Download PDF') }}
                                     </x-dropdown-link>
                                 </button>
 
                                 <!-- Authentication -->
-                                <button wire:confirm="We are working on this feature." class="w-full text-start">
+                                <button class="w-full text-start">
                                     <x-dropdown-link>
                                         <x-heroicon-m-document-text class="size-4 text-teal-400 mr-2" />
-                                        {{ __('Import from excel') }}
+                                        {{ __('Download EXCEL') }}
                                     </x-dropdown-link>
                                 </button>
                             </x-slot>
@@ -73,7 +100,7 @@
                         @php
                         $rowId = 1;
                         @endphp
-                        @foreach ($this->invoices as $invoice)
+                        @foreach ($invoices as $invoice)
                             <tr wire:key="{{ $invoice->id }}" class="transition-colors hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50">
                                 <td class="p-2 text-sm border dark:border-gray-700 bg-white dark:bg-gray-800 sticky left-0"">{{ $rowId++ }}</td>
                                 <td class="p-2 text-sm text-teal-600 border dark:border-gray-700">{{ $invoice->id < 100 ? "#00$invoice->id": "#{$invoice->id}" }}</td>
@@ -94,7 +121,7 @@
                                 <td class="p-2 text-sm text-left border dark:border-gray-700">{{ $invoice?->customer?->name ?? '-' }}</td>
                                 <td class="p-2 text-sm text-left border dark:border-gray-700">{{ date('d/m/Y H:m', strtotime($invoice->created_at)) }}</td>
                                 <td class="p-2 text-sm text-left border dark:border-gray-700">{{ $invoice?->user?->name }}</td>
-                                <td class="p-2 text-sm text-left border dark:border-gray-700 uppercase">{{ $invoice?->paymentMethod?->name }}</td>
+                                <td class="p-2 text-sm text-left border dark:border-gray-700 uppercase">{{ $invoice?->paymentMethod?->name ?? "-" }}</td>
                                 <td class="p-2 text-sm border dark:border-gray-700">
                                     <div class="flex items-center gap-3">
                                         <button class="flex items-center gap-1"
@@ -113,12 +140,12 @@
                             @endforeach
                     </tbody>
                 </table>
-                @empty($this->invoices->items())
+                @empty($invoices->items())
                 <x-empty>{{__('No invoices found!')}}</x-empty>
                 @endempty
             </div>
             <div class="my-2">
-                {{ $this->invoices->links()}}
+                {{ $invoices->links()}}
             </div>
         </div>
     </section>

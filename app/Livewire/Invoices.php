@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Order;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,21 +14,58 @@ class Invoices extends Component
 {
     use WithPagination;
 
+    public ?string $search = null;
 
-    #[Computed(seconds: 10)]
-    public function invoices()
+    #[Url()]
+    public ?string $from_date = null;
+
+    #[Url()]
+    public ?string $to_date = null;
+
+    public function clearFromDate()
     {
-        return Order::withSum('orderItems', 'total')->with(['customer', 'branch', 'paymentMethod', 'user', 'vendor'])->paginate(15);
+        $this->from_date = null;
     }
-    
+
+    public function clearToDate()
+    {
+        $this->to_date = null;
+    }
+
+    public function clearAlldates()
+    {
+        $this->from_date = null;
+        $this->to_date = null;
+    }
+
 
     #[Layout('layouts.app')]
     public function render()
     {
+        $invoices = Order::query()
+                        ->when($this->search, function (Builder $query) {
+                            $query->where('id', 'LIKE', "{$this->search}%");
+                        })
+                        ->when($this->from_date && !$this->to_date, function (Builder $query) {
+                            $query->where('created_at', '>=', $this->from_date);
+                        })
+                        ->when(!$this->from_date && $this->to_date, function (Builder $query) {
+                            $query->where('created_at', '<=', $this->to_date);
+                        })
+                        ->when($this->from_date && $this->to_date, function (Builder $query) {
+                            $query->where('created_at', '<=', $this->to_date)
+                                  ->where('created_at', '>=', $this->from_date);
+                        })
+                        ->withSum('orderItems', 'total')
+                        ->with(['customer', 'branch', 'paymentMethod', 'user', 'vendor'])
+                        ->paginate(15);
+
         return view('livewire.invoices', [
             'total' => Order::count(),
             'pending' => Order::where('status', 'pending')->count(),
             'credit' => Order::where('status', 'credit')->count(),
+            'paid' => Order::where('status', 'paid')->count(),
+            'invoices' => $invoices,
         ]);
     }
 }

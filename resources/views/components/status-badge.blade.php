@@ -11,7 +11,7 @@ $variant = [
 ][$variant];
 @endphp
 
-<button class="rounded-2xl cursor-pointer select-none px-3 py-0.5 text-sm {{ $variant }}"
+<button class="rounded-2xl outline-transparent cursor-pointer select-none px-3 py-0.5 text-sm {{ $variant }}"
    {{ $attributes }}
     >
     {{ $slot }}

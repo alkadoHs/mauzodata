@@ -41,7 +41,7 @@
                 <section>
                     <p class="text-lg">
                         <span class="text-teal-500">Mauzodata(MSI)</span> - Is a sales system made by kadolabs company that help business owners to manage their shops, stores, supermarkets, pharmacies etc.
-                        It generates profit, capitals, expenses, employees sales and stocks inventory reports for you and gives your business overview more effiently to help you make 
+                        It generates profit, capitals, expenses, employees sales and stocks inventory reports for you which gives you a general overview of your business more effiently without pain. This can help you to help you make 
                         business descision more easly.
                     </p>
                 </section>
