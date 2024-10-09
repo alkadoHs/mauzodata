@@ -2,32 +2,34 @@
 
 namespace App\Livewire\CreditSales;
 
+use App\Models\CreditSaleReturn;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CreditSaleDetail extends Component
 {
-    public  $order = null;
-
-    #[Validate('required|numeric|max:999999999|min:0')]
-    public $amount;
+    public ?Order $order;
 
     public function mount(Order $order)
     {
-        $this->order = Order::withSum('orderItems', 'total')->where('id', $order->id)->with(['orderItems.product', 'customer', 'user'])->first();
-    }
-
-    public function payDebt()
-    {
-        //payment process
+        $this->order = Order::with(['orderItems.product', 'customer', 'user'])
+                                ->withSum('orderItems', 'total')
+                                ->withSum('creditSaleReturns', 'amount')
+                                ->where('id', $order->id)
+                                ->first();
     }
 
     #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.credit-sales.credit-sale-detail');
+        return view('livewire.credit-sales.credit-sale-detail', [
+            'returns' => CreditSaleReturn::with('receiver')->where('order_id', $this->order->id)->get(),
+        ]);
     }
 }

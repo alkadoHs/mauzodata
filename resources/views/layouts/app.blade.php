@@ -19,7 +19,7 @@
                 <livewire:layout.sidebar />
             </nav>
             
-            <div class="w-full max-w-full h-dvh overflow-auto">
+            <div class="w-full max-w-full h-dvh overflow-auto print:overflow-hidden">
                 <!-- Page Heading -->
                  <div class="z-40 sticky top-0 print:hidden">
                      <livewire:layout.navigation />

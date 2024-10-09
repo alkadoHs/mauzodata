@@ -16,6 +16,7 @@ class CreditSaleReturn extends Model
     protected $fillable = [
         'branch_id',
         'order_id',
+        'payment_method_id',
         'receiver_id',
         'amount'
     ];
@@ -28,6 +29,11 @@ class CreditSaleReturn extends Model
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function paymentMethod(): BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 
     public function receiver(): BelongsTo

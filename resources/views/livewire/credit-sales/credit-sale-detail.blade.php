@@ -44,29 +44,18 @@
                     </tr>
                     <tr class="md_tr">
                         <th class="md__th text-left">{{ __('Paid amount')}}</th>
-                        <td class="md__td text-right">{{ number_format(0, 2)}}</td>
+                        <td class="md__td text-right">{{ number_format($order->credit_sale_returns_sum_amount, 2)}}</td>
+                    </tr>
+                    <tr class="md_tr">
+                        <th class="md__th text-left">{{ __('Debt')}}</th>
+                        <td class="md__td text-right">
+                        {{ number_format($order->order_items_sum_total - $order->credit_sale_returns_sum_amount, 2)}}
+                        </td>
                     </tr>
                 </table>
             </div>
 
-            <div class="flex items-end gap-4 print:hidden">
-                <div class="space-y-1.5 w-full">
-                    <x-input-label for="amount" value="{{ __('Amount received') }}" />
-                    <x-text-input
-                        wire:model.live.debounce.2000ms="amount"
-                        id="amount"
-                        name="amount"
-                        type="number"
-                        class="mt-1 block w-full"
-                        placeholder="{{ __('') }}"
-                        required
-                    />
-                    <x-input-error :messages="$errors->get('amount')" class="mt-2" />
-                </div>
-                <div>
-                    <x-primary-button wire:click="payDebt">{{__('Save')}}</x-primary-button>
-                </div>
-            </div>
+            <livewire:credit-sales.pay-credit-sale :order="$order" />
 
             <div>
                 <p class="text-white bg-gray-600 p-2">Payment statement</p>
@@ -79,26 +68,13 @@
                         </tr>
                     </thead>
                     <tbody class="md__tbody">
-                        <tr class="md__tr">
-                            <td class="md__td">5-08-2024</td>
-                            <td class="md__td">{{ number_format(50000, 2)}}</td>
-                            <td class="md__td">{{ auth()->user()->name}}</td>
-                        </tr>
-                        <tr class="md__tr">
-                            <td class="md__td">5-08-2024</td>
-                            <td class="md__td">{{ number_format(50000, 2)}}</td>
-                            <td class="md__td">{{ auth()->user()->name}}</td>
-                        </tr>
-                        <tr class="md__tr">
-                            <td class="md__td">5-08-2024</td>
-                            <td class="md__td">{{ number_format(50000, 2)}}</td>
-                            <td class="md__td">{{ auth()->user()->name}}</td>
-                        </tr>
-                        <tr class="md__tr">
-                            <td class="md__td">5-08-2024</td>
-                            <td class="md__td">{{ number_format(50000, 2)}}</td>
-                            <td class="md__td">{{ auth()->user()->name}}</td>
-                        </tr>
+                        @foreach ($returns as $return)
+                            <tr class="md__tr" wire:key="$return->id">
+                                <td class="md__td">{{ date('d-m-Y H:m', strtotime($return->created_at))}}</td>
+                                <td class="md__td">{{ number_format($return->amount, 2)}}</td>
+                                <td class="md__td">{{ $return->receiver->name}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

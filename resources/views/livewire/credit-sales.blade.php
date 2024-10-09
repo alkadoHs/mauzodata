@@ -122,8 +122,8 @@
                             <th class="md__th text-left md__th1">S/N</th>
                             <th class="md__th text-left">{{__('order')}}</th>
                             <th class="md__th text-right">{{__('Total')}}</th>
+                            <th class="md__th text-right">{{__('Paid')}}</th>
                             <th class="md__th">{{__('status')}}</th>
-                            <th class="md__th text-right">{{__('Items')}}</th>
                             <th class="md__th text-left">{{__('Customer')}}</th>
                             <th class="md__th text-left">{{__('Sale date')}}</th>
                             <th class="md__th text-left">{{__('Due date')}}</th>
@@ -140,6 +140,7 @@
                                 <td class="md__td md__td1">{{ $rowId++ }}</td>
                                 <td class="md__td text-teal-600">{{ $order->id < 100 ? "#00$order->id": "#{$order->id}" }}</td>
                                 <td class="md__td text-right">{{ number_format($order->order_items_sum_total, 2) }}</td>
+                                <td class="md__td text-right">{{ number_format($order->credit_sale_returns_sum_amount, 2) }}</td>
                                 @if ($order->due_date < today())
                                     <td class="md__td flex items-center justify-end">
                                         <x-status-badge variant="danger">{{ __('Overdue')}}</x-status-badge>
@@ -149,7 +150,6 @@
                                         <x-status-badge variant="warning">{{ __('Due')}}</x-status-badge>
                                     </td>
                                 @endif
-                                <td class="md__td text-right">{{ number_format($order->order_items_sum_qty, 2) }}</td>
                                 <td class="md__td">{{ $order?->customer?->name ?? '-' }}</td>
                                 <td class="md__td">{{ date('d/m/Y', strtotime($order->created_at)) }}</td>
                                 <td class="md__td">{{ date('d/m/Y', strtotime($order->due_date)) }}</td>

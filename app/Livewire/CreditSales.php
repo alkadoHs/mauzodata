@@ -69,6 +69,7 @@ class CreditSales extends Component
                                   ->whereDate('created_at', '>=', $this->from_date);
                         })
                         ->withSum('orderItems', 'total')
+                        ->withSum('creditSaleReturns', 'amount')
                         ->withSum('orderItems', 'qty')
                         ->with(['customer', 'user', 'vendor'])
                         ->paginate(15);
