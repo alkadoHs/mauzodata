@@ -32,10 +32,10 @@
                     </header>
                 @endif
                 @session('success')
-                   <x-toast class="text-green-800 dark:text-green-500 bg-green-500/20 ">{{ session('success')}}</x-toast>
+                   <x-toast class="text-white bg-green-600 absolute bottom-8 z-50 w-full max-w-sm shadow-lg rounded mx-8">{{ session('success')}}</x-toast>
                 @endsession
                 @session('error')
-                   <x-toast class="text-red-800 dark:text-red-300 bg-red-100 dark:bg-red-200/50 ">{{ session('error')}}</x-toast>
+                   <x-toast class="text-gray-100 bg-red-400 absolute bottom-8 z-50 w-full max-w-sm shadow-xl rounded mx-8">{{ session('error')}}</x-toast>
                 @endsession
     
                 <!-- Page Content -->

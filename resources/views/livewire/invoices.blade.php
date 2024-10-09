@@ -119,9 +119,13 @@
                                     <td class="md__td text-left">
                                       <x-status-badge variant="warning">{{ $invoice->status }}</x-status-badge>
                                     </td>
-                                @else
+                                @elseif ($invoice->status == 'credit')
                                     <td class="md__td text-left">
                                       <x-status-badge variant="danger">{{ $invoice->status }}</x-status-badge>
+                                    </td>
+                                @elseif ($invoice->status == 'approved')
+                                    <td class="md__td text-left">
+                                      <x-status-badge>{{ $invoice->status }}</x-status-badge>
                                     </td>
                                 @endif
                                 <td class="md__td">{{ $invoice?->customer?->name ?? '-' }}</td>

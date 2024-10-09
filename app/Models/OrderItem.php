@@ -17,7 +17,8 @@ class OrderItem extends Model
         'buy_price',
         'price',
         'transport',
-        'qty'
+        'qty',
+        'v_qty',
     ];
 
     public function order(): BelongsTo

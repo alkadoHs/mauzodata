@@ -11,7 +11,7 @@ state([
 ]);
 
 rules([
-    'qty' => "numeric|max:999999",
+    'qty' => "numeric|max:999999|min:0.1",
 ]);
 
 
@@ -42,10 +42,12 @@ $updateCartItem = function () {
 ?>
 
 <div>
-    <input type="number" 
-        class="py-0.5 max-w-24 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-teal-500 dark:focus:border-teal-600 focus:ring-teal-500 dark:focus:ring-teal-600 rounded-md shadow-sm"
+    <input type="text" 
+        class="py-0.5 max-w-24 text-right px-2 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-teal-500 dark:focus:border-teal-600 focus:ring-teal-500 dark:focus:ring-teal-600 rounded-md shadow-sm"
         wire:model.live.debounce.1000ms="qty"
         wire:blur="updateCartItem"
+        x-data
+        x-mask:dynamic="$money($input)"
         class="max-w-24 py-0" />
     <x-input-error :messages="$errors->get('qty')" class="mt-1" />
 </div>

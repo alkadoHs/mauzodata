@@ -97,7 +97,22 @@ $completeOrder = function (): void {
         foreach ($cartItems as $item) {
             $product = Product::find($item->product_id);
     
-            $order->orderItems()->create($item->toArray());
+            // when order status is pending add cartitem qty to v_qty
+            switch ($order->status) {
+                case 'pending':
+                    $order->orderItems()->create([
+                        'product_id' => $item->product_id,
+                        'buy_price' => $item->buy_price,
+                        'price' => $item->price,
+                        'qty' => 0.00,
+                        'v_qty' => $item->qty,
+                    ]);
+                    break;
+                
+                default:
+                    $order->orderItems()->create($item->toArray());
+                    break;
+            }
     
             //decrement the product's stock
             $product->decrement('stock', $item->qty);

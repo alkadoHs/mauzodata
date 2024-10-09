@@ -8,12 +8,12 @@ $alignmentClasses = match ($align) {
 };
 
 $width = match ($width) {
-    '48' => 'w-48',
+    '48' => 'w-60',
     default => $width,
 };
 @endphp
 
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+<div class="relative w-" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         {{ $trigger }}
     </div>
