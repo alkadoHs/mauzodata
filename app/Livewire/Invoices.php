@@ -55,14 +55,14 @@ class Invoices extends Component
                             $query->where('branch_id', $this->branch_id);
                         })
                         ->when($this->from_date && !$this->to_date, function (Builder $query) {
-                            $query->where('created_at', '>=', $this->from_date);
+                            $query->whereDate('created_at', '>=', $this->from_date);
                         })
                         ->when(!$this->from_date && $this->to_date, function (Builder $query) {
-                            $query->where('created_at', '<=', $this->to_date);
+                            $query->whereDate('created_at', '<=', $this->to_date);
                         })
                         ->when($this->from_date && $this->to_date, function (Builder $query) {
-                            $query->where('created_at', '<=', $this->to_date)
-                                  ->where('created_at', '>=', $this->from_date);
+                            $query->whereDate('created_at', '<=', $this->to_date)
+                                  ->whereDate('created_at', '>=', $this->from_date);
                         })
                         ->withSum('orderItems', 'total')
                         ->with(['customer', 'branch', 'paymentMethod', 'user', 'vendor'])

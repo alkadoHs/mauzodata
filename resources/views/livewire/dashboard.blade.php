@@ -1,6 +1,6 @@
 <div class="w-full">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-none">
+        <h2 class="font-semibold text-xl text-gray-200 leading-none">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
