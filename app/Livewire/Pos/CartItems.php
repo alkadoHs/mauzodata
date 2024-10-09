@@ -33,7 +33,8 @@ class CartItems extends Component
     {
         $item->delete();
 
-        $this->dispatch('cartItem-deleted');
+        session()->flash('success', 'Item deleted successfully.');
+        $this->redirect(route('pos'), navigate:true);
     }
 
     public function render()

@@ -60,9 +60,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('reports', Reports::class)->name('reports');
 });
 
-Route::get('export/invoices', [ExportController::class, 'invoices'])
-    ->name('export.invoices')
-    ->middleware('auth');
+
+Route::controller(ExportController::class)->prefix('export/pdf')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('invoices', 'invoices')->name('export.invoices');
+    Route::get('invoices/{invoice}', 'invoice')->name('export.invoice');
+});
 
 
 require __DIR__.'/auth.php';

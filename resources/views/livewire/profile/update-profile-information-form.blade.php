@@ -10,6 +10,7 @@ use function Livewire\Volt\state;
 
 state([
     'name' => fn () => auth()->user()->name,
+    'phone' => fn () => auth()->user()->phone,
     'email' => fn () => auth()->user()->email
 ]);
 
@@ -19,6 +20,7 @@ $updateProfileInformation = function () {
     $validated = $this->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+        'phone' => ['required','max:20', Rule::unique(User::class)->ignore($user->id)],
     ]);
 
     $user->fill($validated);
@@ -64,6 +66,12 @@ $sendVerification = function () {
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input wire:model="phone" id="phone" name="phone" type="text" class="mt-1 block w-full" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 
         <div>

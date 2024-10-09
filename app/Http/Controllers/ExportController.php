@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Spatie\LaravelPdf\Facades\Pdf;
 use Illuminate\Http\Request;
 
 use function Spatie\LaravelPdf\Support\pdf ;
@@ -37,5 +38,11 @@ class ExportController extends Controller
                 ->view('pdfs.invoices', ['invoices' => $invoices])
                 ->name("invoices.pdf")
                 ->download();
+    }
+
+    public function invoice(Order $invoice)
+    {
+        $invoice_ = Order::where('id', $invoice->id)->with(['orderItems.product', 'customer'])->first();
+        return view('pdfs.invoice', ['invoice' => $invoice_]);
     }
 }

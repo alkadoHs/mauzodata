@@ -12,7 +12,7 @@
 }
 
 .md__th {
-    @apply p-2 text-xs uppercase border border-cyan-800 dark:border-gray-700 bg-cyan-900 text-white dark:bg-gray-800 
+    @apply p-2 text-xs uppercase border border-cyan-800 bg-cyan-900 text-white 
 }
 
 .md__thead {

@@ -2,7 +2,6 @@
 
 use App\Models\Product;
 use App\Models\Cart;
-use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +43,6 @@ $addToCart = function (Product $product) {
             'transport' => $product->transport,
         ]);
 
-        session()->flash('success', 'Product added to the cart.');
     } else {
         $newCart = Cart::create(['user_id' => auth()->id()]);
 
@@ -87,14 +85,13 @@ $deleteCustomer = function () {
     $this->redirect(route('pos'), navigate:true);
 };
 
-$completeOrder = function () {
+$completeOrder = function (): void {
+    $cart = auth()->user()->cart;
+    $cartItems = auth()->user()->cartItems()->get();
     
-    DB::transaction(function () {
-        $cart = auth()->user()->cart;
-        $cartItems = auth()->user()->cartItems()->get();
-
-        //create order from cart
-        $order = Order::create($cart->toArray());
+    DB::transaction(callback: function () use($cartItems, $cart): void {
+    //create order from cart
+    $order = Order::create($cart->toArray());
     
         //create orderiems from cartItems
         foreach ($cartItems as $item) {
@@ -109,8 +106,10 @@ $completeOrder = function () {
         //delete the cart
         $cart->delete();
 
-        $this->redirect(route('pos'), navigate:true);
-    });
+        //redirect user to invoice created
+        $this->redirect(route('invoices.view', $order->id), navigate:true);
+    }, attempts: 3);
+
 };
 ?>
 
@@ -148,46 +147,50 @@ $completeOrder = function () {
             </tbody>
         </table>
         @empty($this->products->items())
-        <x-empty>{{__('No products found!')}}</x-empty>
+            <x-empty>{{__('No products found!')}}</x-empty>
         @endempty
     </div>
 
-    <div class="mt-6 space-y-4">
-        @if (auth()->user()?->cart?->customer_id)
-           <p class="flex gap-4">
-             <span>Customer: </span>
-             <span class="text-green-500 font-semibold">{{ auth()->user()?->cart?->customer?->name}}</span>
+     {{-- show cart actions only if a user has created a cart --}}
+    @if (auth()->user()->cart)
+        <div class="mt-6 space-y-4">
+            @if (auth()->user()?->cart?->customer_id)
+            <p class="flex gap-4">
+                <span>Customer: </span>
+                <span class="text-green-500 font-semibold">{{ auth()->user()?->cart?->customer?->name}}</span>
 
-             <button wire:click="deleteCustomer"
-                     class="text-xs font-semibold text-red-500 hover:text-red-400 underline underline-offset-4"
-                     wire:confirm="{{__('Are you sure that you want to delete this customer?')}}"
-            >Delete</button>
-            </p>
-        @else
-            <livewire:pos.cart-create-customer />
-        @endif
+                <button wire:click="deleteCustomer"
+                        class="text-xs font-semibold text-red-500 hover:text-red-400 underline underline-offset-4"
+                        wire:confirm="{{__('Are you sure that you want to delete this customer?')}}"
+                >Delete</button>
+                </p>
+            @else
+                <livewire:pos.cart-create-customer />
+            @endif
 
-        <livewire:pos.cart-update-payment-method />
+            <livewire:pos.cart-update-payment-method />
 
-        <livewire:pos.cart-update-status />
+            <livewire:pos.cart-update-status />
 
-        <div>
-            <label for="transportFee" class="inline-flex items-center">
-                <input id="transportFee" wire:model="transportFee" wire:change="chargeTransport" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-teal-600 shadow-sm focus:ring-teal-500 dark:focus:ring-teal-600 dark:focus:ring-offset-gray-800" name="transportFee">
-                <span class="ms-2  text-gray-600 dark:text-gray-400">{{ __('Charge transport fee?') }}</span>
-            </label>
+            <div>
+                <label for="transportFee" class="inline-flex items-center">
+                    <input id="transportFee" wire:model="transportFee" wire:change="chargeTransport" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-teal-600 shadow-sm focus:ring-teal-500 dark:focus:ring-teal-600 dark:focus:ring-offset-gray-800" name="transportFee">
+                    <span class="ms-2  text-gray-600 dark:text-gray-400">{{ __('Charge transport fee?') }}</span>
+                </label>
+            </div>
+
+            <div class="flex justify-center">
+                <button class="flex gap-2 items-center bg-indigo-600 text-white px-6 py-3 rounded-3xl hover:bg-indigo-500 hover:scale-x-105 transition-all duration-150 disabled:bg-indigo-600/20 disabled:text-white/50"
+                        wire:loading.attr="disabled"
+                        wire:click="completeOrder"
+                        @disabled(!auth()->user()?->cart?->exists())
+                >
+                    <span>{{__('Complete order')}}</span>
+                    <x-heroicon-m-arrow-path wire:loading class="size-4 animate-spin text-teal-500" />
+                </button>
+            </div>
         </div>
+    @endif
 
-        <div class="flex justify-center">
-            <button class="flex gap-2 items-center bg-indigo-600 text-white px-6 py-3 rounded-3xl hover:bg-indigo-500 hover:scale-x-105 transition-all duration-150 disabled:bg-indigo-600/20 disabled:text-white/50"
-                    wire:loading.attr="disabled"
-                    wire:click="completeOrder"
-                    @disabled(!auth()->user()?->cart?->exists())
-            >
-                <span>{{__('Complete order')}}</span>
-                <x-heroicon-m-arrow-path wire:loading class="size-4 animate-spin text-teal-500" />
-            </button>
-        </div>
-    </div>
 </div>
 

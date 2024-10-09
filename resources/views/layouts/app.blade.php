@@ -15,40 +15,34 @@
     </head>
     <body class="font-sans antialiased overflow-hidden dark:bg-gray-950">
         <div class="flex items-start w-full max-w-7xl mx-auto overflow-hidden bg-gray-100 dark:bg-gray-900/90 dark:text-gray-400">
-            <nav class="hidden md:block bg-cyan-950  sticky top-0 w-[290px] max-w-full p-2">
+            <nav class="hidden md:block print:hidden bg-cyan-950  sticky top-0 w-[290px] max-w-full p-2">
                 <livewire:layout.sidebar />
             </nav>
             
             <div class="w-full max-w-full h-dvh overflow-auto">
                 <!-- Page Heading -->
-                 <div class="z-40 sticky top-0">
+                 <div class="z-40 sticky top-0 print:hidden">
                      <livewire:layout.navigation />
                  </div>
                 @if (isset($header))
-                    <header class="bg-cyan-800 text-white">
+                    <header class="bg-cyan-800 text-white print:hidden">
                         <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
                     </header>
                 @endif
+                @session('success')
+                   <x-toast class="text-green-800 dark:text-green-500 bg-green-500/20 ">{{ session('success')}}</x-toast>
+                @endsession
+                @session('error')
+                   <x-toast class="text-red-800 dark:text-red-300 bg-red-100 dark:bg-red-200/50 ">{{ session('error')}}</x-toast>
+                @endsession
     
                 <!-- Page Content -->
                 <main class="px-4 max-w-full">
+
                     {{ $slot }}
                 </main>
-
-                @session('success')
-                <div class="z-50 absolute bottom-4 right-4 p-3 rounded-lg text-green-700 bg-green-300/30" wire:transition>
-                    {{ $value }}
-                </div>
-                @endsession
-
-
-                @session('error')
-                <div class="z-50 absolute bottom-4 right-4 p-3 rounded-lg text-red-700 bg-red-300/30" wire:transition>
-                    {{ $value }}
-                </div>
-                @endsession
             </div>
         </div>
     </body>

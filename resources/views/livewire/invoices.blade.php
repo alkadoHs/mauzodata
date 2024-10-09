@@ -109,7 +109,7 @@
                         @foreach ($invoices as $invoice)
                             <tr wire:key="{{ $invoice->id }}" class="md__tr">
                                 <td class="md__td md__td1">{{ $rowId++ }}</td>
-                                <td class="p-2 text-sm text-teal-600">{{ $invoice->id < 100 ? "#00$invoice->id": "#{$invoice->id}" }}</td>
+                                <td class="md__td text-teal-600">{{ $invoice->id < 100 ? "#00$invoice->id": "#{$invoice->id}" }}</td>
                                 <td class="md__td">{{ number_format($invoice->order_items_sum_total, 2) }}</td>
                                 @if ($invoice->status == 'paid')
                                     <td class="md__td text-left ">
