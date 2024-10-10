@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Observers\StockTransferObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[ObservedBy(StockTransferObserver::class)]
 class StockTransfer extends Model
 {
     use HasFactory;
