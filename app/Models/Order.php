@@ -66,4 +66,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function creditSaleReturns(): HasMany
+    {
+        return $this->hasMany(CreditSaleReturn::class);
+    }
 }

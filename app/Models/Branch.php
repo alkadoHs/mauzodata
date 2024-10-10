@@ -53,4 +53,9 @@ class Branch extends Model
     {
         return $this->hasMany(Customer::class);
     }
+
+    public function creditSaleReturns(): HasMany
+    {
+        return $this->hasMany(CreditSaleReturn::class);
+    }
 }
