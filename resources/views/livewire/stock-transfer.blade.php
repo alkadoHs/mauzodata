@@ -5,7 +5,38 @@
         </h2>
     </x-slot>
 
-    <div class="py-6">
-        {{-- <livewire:user.all-users /> --}}
+    <div class="grid grid-cols-2 divide-x-2 text-white -mx-4">
+        <a class="bg-gray-500 py-2 pl-2 lg:pl-6 " href="">Transfer stocks</a>
+        <a class="bg-gray-600 p-2" href="">Receive stocks</a>
     </div>
+
+    <ection class="py-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="space-y-4">
+            <x-text-input type="search" wire:model.live.debounce.1000ms="search" placeholder="Search product" />
+
+            <div class="md__table_wrapper">
+                <table class="md__table">
+                    <thead class="md__thead">
+                        <tr>
+                            <th class="md__th text-left">{{ __('Product') }}</th>
+                            <th class="md__th text-left">{{ __('Stock')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="md__tbody">
+                        @foreach ($products as $product)
+                            <tr class="md__tr" wire:key="$product->id">
+                                <td class="md__td">{{ $product->name }}</td>
+                                <td class="md__td">{{ number_format($product->stock)}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div>
+            <livewire:stock-transfers.transfer-cart />
+        </div>
+    </ection>
 </div>
