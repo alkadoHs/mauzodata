@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Expenses;
 
+use App\Models\Expense;
 use App\Models\PaymentMethod;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
@@ -23,7 +24,24 @@ class CreateExpense extends Component
     {
         $validated = $this->validate();
 
-        //create expense
+        $todayExpense = Expense::whereDate('created_at', today())
+                            ->where([['user_id', auth()->id()], ['payment_method_id', $this->payment_method_id]])->first();
+
+        if($todayExpense) {
+            $todayExpense->expenseItems()->create($validated);
+        } else {
+            $expense = Expense::create([
+                'payment_method_id' => $this->payment_method_id,
+            ]);
+
+            $expense->expenseItems()->create($validated);
+        }
+
+        $this->reset(['item', 'cost']);
+
+        session()->flash('success', 'Created successfully.');
+
+        $this->dispatch('expense-created');
     }
 
     public function render()

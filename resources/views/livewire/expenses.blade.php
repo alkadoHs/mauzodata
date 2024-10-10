@@ -16,48 +16,31 @@
                 <thead class="md__thead">
                     <tr>
                         <th class="md__th md__th1">S/N</th>
-                        <th class="md__th text-left">{{__('Item')}}</th>
-                        <th class="md__th text-left">{{__('Cost')}}</th>
-                        <th class="md__th text-left">{{__('Date')}}</th>
+                        <th class="md__th text-left">{{__('Payment method')}}</th>
+                        <th class="md__th text-left">{{__('Total')}}</th>
+                        <th class="md__th text-left">{{__('Items')}}</th>
+                        <th class="md__th text-left">{{__('')}}</th>
                     </tr>
                 </thead>
                 <tbody class="md__tbody">
-                    <tr class="md__tr">
-                        <td class="md__td">1</td>
-                        <td class="md__td">Chakula</td>
-                        <td class="md__td">4000</td>
-                        <td class="md__td">12-06-2024 12:00</td>
-                    </tr>
-                    <tr class="md__tr">
-                        <td class="md__td">1</td>
-                        <td class="md__td">Chakula</td>
-                        <td class="md__td">4000</td>
-                        <td class="md__td">12-06-2024 12:00</td>
-                    </tr>
-                    <tr class="md__tr">
-                        <td class="md__td">1</td>
-                        <td class="md__td">Chakula</td>
-                        <td class="md__td">4000</td>
-                        <td class="md__td">12-06-2024 12:00</td>
-                    </tr>
-                    <tr class="md__tr">
-                        <td class="md__td">1</td>
-                        <td class="md__td">Chakula</td>
-                        <td class="md__td">4000</td>
-                        <td class="md__td">12-06-2024 12:00</td>
-                    </tr>
-                    <tr class="md__tr">
-                        <td class="md__td">1</td>
-                        <td class="md__td">Chakula</td>
-                        <td class="md__td">4000</td>
-                        <td class="md__td">12-06-2024 12:00</td>
-                    </tr>
-                    <tr class="md__tr">
-                        <td class="md__td">1</td>
-                        <td class="md__td">Chakula</td>
-                        <td class="md__td">4000</td>
-                        <td class="md__td">12-06-2024 12:00</td>
-                    </tr>
+                    @php $id = 1; @endphp
+                    @foreach ($expenses as $expense)
+                    <tr class="md__tr" wire:key="$expense->id">
+                        <td class="md__td md__td1">{{ $id++ }}</td>
+                        <td class="md__td">{{ $expense?->paymentMethod?->name}}</td>
+                        <td class="md__td">{{ number_format($expense->expense_items_sum_cost, 2)}}</td>
+                        <td class="md__td w-full" colspan="2">
+                            <table class="w-full table">
+                                @foreach ($expense->expenseItems as $item)
+                                   <tr class="md__tr" wire:key="$item->id">
+                                       <td class="md__td">{{ $item->item }}</td>
+                                       <td class="md__td">{{ number_format($item->cost, 2) }}</td>
+                                   </tr>
+                                @endforeach
+                            </table>
+                            </td>
+                        </tr>
+                        @endforeach
                 </tbody>
             </table>
         </div>
