@@ -6,7 +6,7 @@ use function Livewire\Volt\{state, rules};
 
 state([
     'name' => '',
-    'contact' => '',
+    'contact',
 ]);
 
 rules([

@@ -48,39 +48,39 @@
                 </div>
             </div>
         </div>
-        <div class="relative max-h-dvh mt-4 space-y-4 bg-white dark:bg-gray-100/10 overflow-auto whitespace-nowrap" wire:lazy>
-            <table class="w-full border-collapse border dark:border-gray-700">
-                <thead class="dark:text-gray-300">
-                    <tr class=" z-10">
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700  bg-white dark:bg-gray-800 sticky left-0 top-0 z-20">S/N</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Name')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Phone')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Email')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Branch')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Role')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Status')}}</th>
-                        <th class="p-2 text-xs text-left border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0"></th>
+        <div class="md__table_wrapper" wire:lazy>
+            <table class="md__table">
+                <thead class="md__thead">
+                    <tr class="z-10">
+                        <th class="md__th text-left md__th1">S/N</th>
+                        <th class="md__th text-left">{{__('Name')}}</th>
+                        <th class="md__th text-left">{{__('Phone')}}</th>
+                        <th class="md__th text-left">{{__('Email')}}</th>
+                        <th class="md__th text-left">{{__('Branch')}}</th>
+                        <th class="md__th text-left">{{__('Role')}}</th>
+                        <th class="md__th text-left">{{__('Status')}}</th>
+                        <th class="md__th text-left"></th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-600 dark:text-gray-400">
+                <tbody class="md__tbody">
                     @php
                     $rowId = 1;
                     @endphp
                     @foreach ($this->users as $user)
-                        <tr wire:key="{{ $user->id }}" class="transition-colors hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50">
-                            <td class="p-2 text-sm border dark:border-gray-700 bg-white dark:bg-gray-800 sticky left-0"">{{ $rowId++ }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">
+                        <tr wire:key="{{ $user->id }}" class="md__tr">
+                            <td class="md__td md_td1">{{ $rowId++ }}</td>
+                            <td class="md__td">
                                 <div class="flex items-center gap-2">
                                     <img class="size-7 rounded-full" src="{{ $user->avatar ? asset("storage/{$user->avatar}"): asset('logo1.png')}}" alt="{{$user->name}}">
                                     <span>{{ $user->name }}</span>
                                 </div>
                             </td>
-                            <td class="p-2 text-sm border dark:border-gray-700">{{ $user->phone ?? '-'}}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">{{ $user->email }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">{{ $user?->branch?->name ?? "-" }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700 uppercase">{{ $user?->role }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">{{ $user->isAdmin }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">
+                            <td class="md__td">{{ $user->phone ?? '-'}}</td>
+                            <td class="md__td">{{ $user->email }}</td>
+                            <td class="md__td">{{ $user?->branch?->name ?? "-" }}</td>
+                            <td class="md__td uppercase">{{ $user?->role }}</td>
+                            <td class="md__td">{{ $user->isAdmin }}</td>
+                            <td class="md__td">
                                 <div class="flex items-center gap-3">
                                     <livewire:user.edit-user :user="$user" :key="$user->id"  />
                                     

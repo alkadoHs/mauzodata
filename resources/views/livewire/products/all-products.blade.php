@@ -48,38 +48,38 @@
                 </div>
             </div>
         </div>
-        <div class="relative max-h-dvh mt-4 space-y-4 bg-white dark:bg-gray-100/10 overflow-auto whitespace-nowrap" wire:lazy>
-            <table class="w-full border-collapse border dark:border-gray-700">
-                <thead class="dark:text-gray-300">
+        <div class="md__table_wrapper" wire:lazy>
+            <table class="md__table">
+                <thead class="md__thead">
                     <tr class="z-10">
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700  bg-white dark:bg-gray-800 sticky left-0 top-0 z-20">S/N</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Name')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Unit')}}</th>
-                        <th class="p-2 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Stock')}}</th>
-                        <th class="p-2 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Buying price')}}</th>
-                        <th class="p-2 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Selling price')}}</th>
-                        <th class="p-2 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Whole price')}}</th>
-                        <th class="p-2 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Whole stock')}}</th>
-                        <th class="p-2 text-xs text-right uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Stock alert')}}</th>
-                        <th class="p-2 text-xs text-left border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0"></th>
+                        <th class="md__th md__th1">S/N</th>
+                        <th class="md__th text-left">{{__('Name')}}</th>
+                        <th class="md__th text-left">{{__('Unit')}}</th>
+                        <th class="md__th text-right">{{__('Stock')}}</th>
+                        <th class="md__th text-right">{{__('Buying price')}}</th>
+                        <th class="md__th text-right">{{__('Selling price')}}</th>
+                        <th class="md__th text-right">{{__('Whole price')}}</th>
+                        <th class="md__th text-right">{{__('Whole stock')}}</th>
+                        <th class="md__th text-right">{{__('Stock alert')}}</th>
+                        <th class="md__th text-left"></th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-600 dark:text-gray-400">
+                <tbody class="md__tbody">
                     @php
                     $rowId = 1;
                     @endphp
                     @foreach ($this->products as $product)
-                        <tr wire:key="{{ $product->id }}" class="transition-colors hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50">
-                            <td class="p-2 text-sm border dark:border-gray-700 bg-white dark:bg-gray-800 sticky left-0"">{{ $rowId++ }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">{{ $product->name }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700 uppercase">{{ $product->unit }}</td>
-                            <td class="p-2 text-sm text-right border dark:border-gray-700">{{ number_format($product->stock, 2) }}</td>
-                            <td class="p-2 text-sm text-right border dark:border-gray-700">{{ number_format($product->buy_price, 2) }}</td>
-                            <td class="p-2 text-sm text-right border dark:border-gray-700">{{ number_format($product->sale_price, 2) }}</td>
-                            <td class="p-2 text-sm text-right border dark:border-gray-700">{{ number_format($product->whole_price, 2) }}</td>
-                            <td class="p-2 text-sm text-right border dark:border-gray-700">{{ number_format($product->whole_stock, 2) }}</td>
-                            <td class="p-2 text-sm text-right border dark:border-gray-700">{{ number_format($product->stock_alert, 2) }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">
+                        <tr wire:key="{{ $product->id }}" class="md__tr">
+                            <td class="md__td md__td1">{{ $rowId++ }}</td>
+                            <td class="md__td">{{ $product->name }}</td>
+                            <td class="md__td uppercase">{{ $product->unit }}</td>
+                            <td class="md__td text-right">{{ number_format($product->stock, 2) }}</td>
+                            <td class="md__td text-right">{{ number_format($product->buy_price, 2) }}</td>
+                            <td class="md__td text-right">{{ number_format($product->sale_price, 2) }}</td>
+                            <td class="md__td text-right">{{ number_format($product->whole_price, 2) }}</td>
+                            <td class="md__td text-right">{{ number_format($product->whole_stock, 2) }}</td>
+                            <td class="md__td text-right">{{ number_format($product->stock_alert, 2) }}</td>
+                            <td class="md__td">
                                 <div class="flex items-center gap-3">
                                     <livewire:products.view-product :product="$product" :key="$product->id" />
                                     <livewire:products.edit-product :product="$product" :key="$product->id" />

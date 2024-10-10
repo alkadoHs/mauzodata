@@ -87,54 +87,56 @@
                     </div>
                 </div>
             </div>
-            <div class="relative max-h-dvh mt-4 space-y-4 bg-white dark:bg-gray-100/10 overflow-auto whitespace-nowrap" wire:lazy>
-                <table class="w-full border-collapse border dark:border-gray-700">
-                    <thead class="dark:text-gray-300">
+            <div class="md__table_wrapper" wire:lazy>
+                <table class="md__table">
+                    <thead class="md__thead">
                         <tr class=" z-10">
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700  bg-white dark:bg-gray-800 sticky left-0 top-0 z-20">S/N</th>
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Invoice')}}</th>
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Total')}}</th>
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Status')}}</th>
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Customer')}}</th>
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Issued on')}}</th>
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Seller')}}</th>
-                            <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Payment method')}}</th>
-                            <th class="p-2 text-xs text-left border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">Actions</th>
+                            <th class="md__th text-left md__th1">S/N</th>
+                            <th class="md__th text-left">{{__('Invoice')}}</th>
+                            <th class="md__th text-left">{{__('Total')}}</th>
+                            <th class="md__th text-left">{{__('Status')}}</th>
+                            <th class="md__th text-left">{{__('Customer')}}</th>
+                            <th class="md__th text-left">{{__('Issued on')}}</th>
+                            <th class="md__th text-left">{{__('Seller')}}</th>
+                            <th class="md__th text-left">{{__('Payment method')}}</th>
+                            <th class="md__th text-left">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 dark:text-gray-400">
+                    <tbody class="md__tbody">
                         @php
                         $rowId = 1;
                         @endphp
                         @foreach ($invoices as $invoice)
-                            <tr wire:key="{{ $invoice->id }}" class="transition-colors hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50">
-                                <td class="p-2 text-sm border dark:border-gray-700 bg-white dark:bg-gray-800 sticky left-0"">{{ $rowId++ }}</td>
-                                <td class="p-2 text-sm text-teal-600 border dark:border-gray-700">{{ $invoice->id < 100 ? "#00$invoice->id": "#{$invoice->id}" }}</td>
-                                <td class="p-2 text-sm border dark:border-gray-700">{{ number_format($invoice->order_items_sum_total, 2) }}</td>
+                            <tr wire:key="{{ $invoice->id }}" class="md__tr">
+                                <td class="md__td md__td1">{{ $rowId++ }}</td>
+                                <td class="p-2 text-sm text-teal-600">{{ $invoice->id < 100 ? "#00$invoice->id": "#{$invoice->id}" }}</td>
+                                <td class="md__td">{{ number_format($invoice->order_items_sum_total, 2) }}</td>
                                 @if ($invoice->status == 'paid')
-                                    <td class="p-2 text-sm text-left border dark:border-gray-700">
+                                    <td class="md__td text-left ">
                                       <x-status-badge variant="success">{{ $invoice->status }}</x-status-badge>
                                     </td>
                                 @elseif($invoice->status == 'pending')
-                                    <td class="p-2 text-sm text-left border dark:border-gray-700">
+                                    <td class="md__td text-left">
                                       <x-status-badge variant="warning">{{ $invoice->status }}</x-status-badge>
                                     </td>
                                 @else
-                                    <td class="p-2 text-sm text-left border dark:border-gray-700">
+                                    <td class="md__td text-left">
                                       <x-status-badge variant="danger">{{ $invoice->status }}</x-status-badge>
                                     </td>
                                 @endif
-                                <td class="p-2 text-sm text-left border dark:border-gray-700">{{ $invoice?->customer?->name ?? '-' }}</td>
-                                <td class="p-2 text-sm text-left border dark:border-gray-700">{{ date('d/m/Y H:m', strtotime($invoice->created_at)) }}</td>
-                                <td class="p-2 text-sm text-left border dark:border-gray-700">{{ $invoice?->user?->name }}</td>
-                                <td class="p-2 text-sm text-left border dark:border-gray-700 uppercase">{{ $invoice?->paymentMethod?->name ?? "-" }}</td>
-                                <td class="p-2 text-sm border dark:border-gray-700">
+                                <td class="md__td">{{ $invoice?->customer?->name ?? '-' }}</td>
+                                <td class="md__td">{{ date('d/m/Y H:m', strtotime($invoice->created_at)) }}</td>
+                                <td class="md__td">{{ $invoice?->user?->name }}</td>
+                                <td class="md__td uppercase">{{ $invoice?->paymentMethod?->name ?? "-" }}</td>
+                                <td class="md__td">
                                     <div class="flex items-center gap-3">
-                                        <button class="flex items-center gap-1"
-                                        >
-                                            <x-heroicon-o-eye class="size-5 text-teal-500" />
-                                            <span class="text-xs">View</span>
-                                        </button>
+                                        <a href="{{ route('invoices.view', ['invoice' => $invoice])}}" wire:navigate>
+                                            <button class="flex items-center gap-1"
+                                            >
+                                                <x-heroicon-o-eye class="size-5 text-teal-500" />
+                                                <span class="text-xs">View</span>
+                                            </button>
+                                        </a>
                                         <button wire:click="deleteinvoice({{$invoice->id}})" 
                                                 wire:confirm.prompt="Are you sure that you want to delete - {{ $invoice->name }}?\n\nType DELETE to confirm|DELETE"
                                         >

@@ -23,7 +23,7 @@ class AllProducts extends Component
     {
         return Product::where('name', 'LIKE', "%{$this->search}%")
                          ->where('branch_id', auth()->user()->branch_id)
-                         ->paginate(25);
+                         ->paginate(15);
     }
 
     public function deleteProduct(Product $product): void

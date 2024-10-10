@@ -45,30 +45,30 @@
                 </div>
             </div>
         </div>
-        <div class="relative max-h-dvh mt-4 space-y-4 bg-white dark:bg-gray-100/10 overflow-auto whitespace-nowrap" wire:lazy>
-            <table class="w-full border-collapse border dark:border-gray-700">
-                <thead class="dark:text-gray-300">
-                    <tr class=" z-10">
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700  bg-white dark:bg-gray-800 sticky left-0 top-0 z-20">S/N</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Name')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Contact')}}</th>
-                        <th class="p-2 text-xs text-left uppercase border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0">{{__('Date')}}</th>
-                        <th class="p-2 text-xs text-left border dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0"></th>
+        <div class="md__table_wrapper" wire:lazy>
+            <table class="md__table">
+                <thead class="md__table">
+                    <tr class="z-10">
+                        <th class="md__th text-left md__th1">S/N</th>
+                        <th class="md__th text-left">{{__('Name')}}</th>
+                        <th class="md__th text-left">{{__('Contact')}}</th>
+                        <th class="md__th text-left">{{__('Date')}}</th>
+                        <th class="md__th"></th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-600 dark:text-gray-400">
+                <tbody class="md__tbody">
                     @php
                     $rowId = 1;
                     @endphp
                     @foreach ($this->customers as $customer)
-                        <tr wire:key="{{ $customer->id }}" class="transition-colors hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50">
-                            <td class="p-2 text-sm border dark:border-gray-700 bg-white dark:bg-gray-800 sticky left-0"">{{ $rowId++ }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">
+                        <tr wire:key="{{ $customer->id }}" class="md__tr">
+                            <td class="md__td md__td1"">{{ $rowId++ }}</td>
+                            <td class="md__td">
                                     {{ $customer->name }}
                             </td>
-                            <td class="p-2 text-sm border dark:border-gray-700">{{ $customer->contact ?? "-" }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">{{ date('d/m/Y H:m', strtotime($customer->created_at)) }}</td>
-                            <td class="p-2 text-sm border dark:border-gray-700">
+                            <td class="md__td">{{ $customer->contact ?? "-" }}</td>
+                            <td class="md__td">{{ date('d/m/Y H:m', strtotime($customer->created_at)) }}</td>
+                            <td class="md__td">
                                 <div class="flex items-center gap-3">
                                     
                                     <button wire:click="deletecustomer({{$customer->id}})" 

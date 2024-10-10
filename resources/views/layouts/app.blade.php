@@ -15,7 +15,7 @@
     </head>
     <body class="font-sans antialiased overflow-hidden dark:bg-gray-950">
         <div class="flex items-start w-full max-w-7xl mx-auto overflow-hidden bg-gray-100 dark:bg-gray-900/90 dark:text-gray-400">
-            <nav class="hidden md:block dark dark:bg-gray-800  sticky top-0 w-[280px] max-w-full p-2 border-r border-gray-200 dark:border-gray-700 ">
+            <nav class="hidden md:block bg-cyan-950  sticky top-0 w-[290px] max-w-full p-2 border-r border-gray-200 dark:border-gray-700 ">
                 <livewire:layout.sidebar />
             </nav>
             

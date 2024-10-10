@@ -6,6 +6,7 @@ use App\Livewire\Customers;
 use App\Livewire\Damages;
 use App\Livewire\Dashboard;
 use App\Livewire\Expenses;
+use App\Livewire\InvoiceDetail;
 use App\Livewire\Invoices;
 use App\Livewire\NewStocks;
 use App\Livewire\PendingOrders;
@@ -18,6 +19,7 @@ use App\Livewire\StockTransfers;
 use App\Livewire\SystemSetup;
 use App\Livewire\Users;
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 use function Spatie\LaravelPdf\Support\pdf;
 
 Route::view('/', 'welcome');
@@ -47,6 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('customers', Customers::class)->name('customers');
     Route::get('point-of-sale', PointOfSale::class)->name('pos');
     Route::get('invoices', Invoices::class)->name('invoices');
+    Volt::route('invoices/{invoice}', InvoiceDetail::class)->name('invoices.view');
     Route::get('pending-orders', PendingOrders::class)->name('pending-orders');
     Route::get('credit-sales', CreditSales::class)->name('credit-sales');
     Route::get('expenses', Expenses::class)->name('expenses');

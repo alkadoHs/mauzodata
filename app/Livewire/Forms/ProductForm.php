@@ -38,7 +38,7 @@ class ProductForm extends Form
     public ?float $transport = 0.00;
 
     #[Validate('nullable|string|max:20')]
-    public ?string $expire_date = '';
+    public ?string $expire_date = null;
 
     public function store(): void
     {
