@@ -56,7 +56,7 @@ $login = function () {
 
         <div class="flex flex-col gap-3 items-center mt-4">
             
-            <button type="submit" class="ms-3 text-center w-full text-sm px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-3xl text-white dark:text-gray-800 tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+            <button type="submit" class="ms-3 text-center w-full text-sm px-4 py-2 bg-cyan-800 dark:bg-cyan-600 border border-transparent rounded-3xl text-white tracking-widest hover:bg-cyan-700 dark:hover:bg-cyan-500 focus:bg-cyan-700 dark:focus:bg-cyan-500 active:bg-cyan-900 dark:active:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 dark:focus:ring-offset-cyan-800 transition ease-in-out duration-150">
                 {{ __('Log in') }}
             </button>
 

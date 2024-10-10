@@ -13,31 +13,30 @@
         <livewire:system-setup.create-branch />
     </div>
 
-    <div class="mt-6 space-y-6 overflow-x-auto">
-
-        <table class="w-full border-collapse border dark:border-gray-700">
-            <thead class="dark:text-gray-300">
+    <div class="md__table_wrapper">
+        <table class="md__table">
+            <thead class="md__thead">
                 <tr>
-                    <th class="p-2 text-sm text-left border dark:border-gray-700">S/N</th>
-                    <th class="p-2 text-sm text-left border dark:border-gray-700">NAME</th>
-                    <th class="p-2 text-sm text-left border dark:border-gray-700">PHONE</th>
-                    <th class="p-2 text-sm text-left border dark:border-gray-700">ADDRESS</th>
-                    <th class="p-2 text-sm text-left border dark:border-gray-700">TAX ID</th>
-                    <th class="p-2 text-sm text-left border dark:border-gray-700"></th>
+                    <th class="md__th">S/N</th>
+                    <th class="md__th">NAME</th>
+                    <th class="md__th">PHONE</th>
+                    <th class="md__th">ADDRESS</th>
+                    <th class="md__th">TAX ID</th>
+                    <th class="md__th"></th>
                 </tr>
             </thead>
-            <tbody class="text-gray-600 dark:text-gray-400">
+            <tbody class="md__tbody">
                 @php
                 $rowId = 1;
                 @endphp
                 @foreach ($branches as $branch)
-                    <tr wire:key="{{ $branch->id }}">
-                        <td class="p-2 text-sm border dark:border-gray-700">{{ $rowId++ }}</td>
-                        <td class="p-2 text-sm border dark:border-gray-700">{{ $branch->name }}</td>
-                        <td class="p-2 text-sm border dark:border-gray-700">{{ $branch->phone }}</td>
-                        <td class="p-2 text-sm border dark:border-gray-700">{{ $branch->address }}</td>
-                        <td class="p-2 text-sm border dark:border-gray-700">{{ $branch->taxt_id }}</td>
-                        <td class="p-2 text-sm border dark:border-gray-700">
+                    <tr wire:key="{{ $branch->id }}" class="md__tr">
+                        <td class="md__td">{{ $rowId++ }}</td>
+                        <td class="md__td">{{ $branch->name }}</td>
+                        <td class="md__td">{{ $branch->phone }}</td>
+                        <td class="md__td">{{ $branch->address }}</td>
+                        <td class="md__td">{{ $branch->taxt_id }}</td>
+                        <td class="md__td">
                             <div class="flex items-center gap-2">
                                 <livewire:system-setup.update-branch :branch="$branch" :key="$branch->id" />
                                 <button wire:click="deleteBranch({{$branch->id}})" 
