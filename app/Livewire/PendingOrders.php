@@ -68,7 +68,7 @@ class PendingOrders extends Component
     #[Layout('layouts.app')]
     public function render()
     {
-        $orders = Order::query()
+        $orders = Order::where('status', 'pending')
                         ->when($this->search, function (Builder $query) {
                             $query->where('id',$this->search)
                                   ->orWhereRelation('customer', 'name', 'LIKE', "%$this->search%");
@@ -90,7 +90,6 @@ class PendingOrders extends Component
                             $query->whereDate('created_at', '<=', $this->to_date)
                                   ->whereDate('created_at', '>=', $this->from_date);
                         })
-                        ->where('status', 'pending')
                         ->withSum('orderItems', 'v_total')
                         ->withCount('orderItems')
                         ->with(['customer', 'user', 'vendor'])
@@ -99,7 +98,7 @@ class PendingOrders extends Component
         return view('livewire.pending-orders', [
             'orders' => $orders,
             'branches' => Branch::get(),
-            'users' => User::where([['company_id', auth()->user()->company_id], ['role', 'vendor']])
+            'users' => User::where([['company_id', auth()->user()->company_id]])
                                 ->orderBy('name')->get(),
         ]);
     }

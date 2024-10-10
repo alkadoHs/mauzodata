@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ExportController;
 use App\Livewire\CreditSales;
+use App\Livewire\CreditSales\CreditSaleDetail;
 use App\Livewire\Customers;
 use App\Livewire\Damages;
 use App\Livewire\Dashboard;
@@ -52,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Volt::route('invoices/{invoice}', InvoiceDetail::class)->name('invoices.view');
     Route::get('pending-orders', PendingOrders::class)->name('pending-orders');
     Route::get('credit-sales', CreditSales::class)->name('credit-sales');
+    Route::get('credit-sales/{order}', CreditSaleDetail::class)->name('credit-sales.view');
     Route::get('expenses', Expenses::class)->name('expenses');
     Route::get('stock-transfer', StockTransfers::class)->name('stock-transfer');
     Route::get('new-stock', NewStocks::class)->name('new-stock');

@@ -39,3 +39,7 @@
 .md__tr {
     @apply transition-colors hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50
 }
+
+.md__action_navigate {
+    @apply text-white hover:text-gray-300 font-semibold flex items-center gap-2 bg-gray-700 dark:bg-gray-400/50 hover:bg-gray-600 cursor-pointer py-1 px-2
+}

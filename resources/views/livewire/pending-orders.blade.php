@@ -74,12 +74,12 @@
                                     </div>
 
                                     <div class="space-y-1.5 w-full" wire:lazy>
-                                        <x-input-label for="user_id" value="{{ __('Vendor') }}" />
+                                        <x-input-label for="user_id" value="{{ __('User') }}" />
                                         <select name="user_id"
                                                wire:model.live="user_id"
                                                class="w-full py-1.5 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-cyan-500 dark:focus:border-cyan-600 focus:ring-cyan-500 dark:focus:ring-cyan-600 rounded-md shadow-sm"
                                                >
-                                           <option value="">{{ __('Filter by vendor')}}</option>
+                                           <option value="">{{ __('Filter by user')}}</option>
                                            @foreach ($users as $user)
                                                <option wire:key="$user->id" value="{{ $user->id }}">{{ $user->name }}</option>
                                            @endforeach
