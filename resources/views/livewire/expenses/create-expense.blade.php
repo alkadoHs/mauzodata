@@ -19,7 +19,7 @@
                 wire:model="item"
                 id="item"
                 name="item"
-                type="number"
+                type="text"
                 class="mt-1 block w-full"
                 placeholder="{{ __('') }}"
                 required
