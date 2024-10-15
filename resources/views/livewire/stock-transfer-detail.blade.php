@@ -1,6 +1,9 @@
 <div>
     <x-slot name="header">
         <div class="flex justify-end gap-4">
+            <a href="{{ route('stock-transfer.transfered')}}">
+                <x-heroicon-o-arrow-left-circle class="size-6 hover:fill-current" />
+            </a>
             <h2 class="font-semibold text-xl text-gray-200 leading-tight mr-auto">
                 {{__('Transfered products')}}
             </h2>

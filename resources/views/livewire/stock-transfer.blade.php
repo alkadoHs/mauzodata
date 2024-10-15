@@ -5,10 +5,13 @@
         </h2>
     </x-slot>
 
-    <div class="grid grid-cols-3 divide-x-2 text-white -mx-4">
-        <a class="bg-gray-500 py-2 pl-2 lg:pl-6 " href="">{{ __('Transfer')}}</a>
-        <a class="bg-gray-600 p-2" href="">{{ __('Transfered')}}</a>
-        <a class="bg-gray-600 p-2" href="">{{ __('Receive')}}</a>
+    <div class="grid grid-cols-2 divide-x-2 text-white -mx-4">
+        <a class="bg-gray-500 py-2 pl-2 lg:pl-6 " href="{{ route('stock-transfer')}}" 
+           wire:navigate
+        >{{ __('Transfer')}}</a>
+        <a class="bg-gray-600 p-2" href="{{ route('stock-transfer.transfered')}}"
+           wire:navigate
+        >{{ __('Transfered')}}</a>
     </div>
 
     <section class="py-4 grid grid-cols-1 lg:grid-cols-2 gap-6">

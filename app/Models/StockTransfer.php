@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[ObservedBy(StockTransferObserver::class)]
-#[ScopedBy(CompanyBranchesScope::class)]
 class StockTransfer extends Model
 {
     use HasFactory;

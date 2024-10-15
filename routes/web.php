@@ -18,6 +18,7 @@ use App\Livewire\ProductsIventory;
 use App\Livewire\Reports;
 use App\Livewire\StockTransferDetail;
 use App\Livewire\StockTransfers;
+use App\Livewire\StockTransfers\TransferedStock;
 use App\Livewire\SystemSetup;
 use App\Livewire\Users;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('stock-transfer', StockTransfers::class)->name('stock-transfer');
     Route::get('stock-transfer/{stockTransfer}/preview', StockTransferDetail::class)->name('stock-transfer.preview');
+    Route::get('stock-transfer/transfered', TransferedStock::class)->name('stock-transfer.transfered');
 
     Route::get('new-stock', NewStocks::class)->name('new-stock');
 
