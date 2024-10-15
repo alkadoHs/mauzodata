@@ -16,6 +16,7 @@ use App\Livewire\Product;
 use App\Livewire\Products\Imports\ImportProductFromBranch;
 use App\Livewire\ProductsIventory;
 use App\Livewire\Reports;
+use App\Livewire\StockTransferDetail;
 use App\Livewire\StockTransfers;
 use App\Livewire\SystemSetup;
 use App\Livewire\Users;
@@ -43,22 +44,37 @@ Route::view('profile', 'profile')
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('system-setup', SystemSetup::class)->name('setup');
+
     Route::get('products', Product::class)->name('products');
+
     Route::get('products/import-products-from-branch', ImportProductFromBranch::class)
         ->name('import-product-from-branch');
+
     Route::get('users', Users::class)->name('users');
+
     Route::get('customers', Customers::class)->name('customers');
+
     Route::get('point-of-sale', PointOfSale::class)->name('pos');
+
     Route::get('invoices', Invoices::class)->name('invoices');
     Volt::route('invoices/{invoice}', InvoiceDetail::class)->name('invoices.view');
+
     Route::get('pending-orders', PendingOrders::class)->name('pending-orders');
+
     Route::get('credit-sales', CreditSales::class)->name('credit-sales');
     Route::get('credit-sales/{order}', CreditSaleDetail::class)->name('credit-sales.view');
+
     Route::get('expenses', Expenses::class)->name('expenses');
+
     Route::get('stock-transfer', StockTransfers::class)->name('stock-transfer');
+    Route::get('stock-transfer/{stockTransfer}/preview', StockTransferDetail::class)->name('stock-transfer.preview');
+
     Route::get('new-stock', NewStocks::class)->name('new-stock');
+
     Route::get('inventory-system', ProductsIventory::class)->name('inventory');
+
     Route::get('damages', Damages::class)->name('damages');
+
     Route::get('reports', Reports::class)->name('reports');
 });
 

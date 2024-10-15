@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('stock_transfers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('to_branch_id')->constrained('branches')->restrictOnDelete();
-            $table->foreignId('product_id')->constrained()->restrictOnDelete();
-            $table->decimal('stock');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('to_branch_id')->nullable()->constrained('branches')->restrictOnDelete();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

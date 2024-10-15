@@ -7,6 +7,7 @@ class ProductObserver
 {
     public function creating(Product $product): void
     {
-        $product->branch_id = auth()->user()->branch_id;
+        if(!$product->branch_id)
+            $product->branch_id = auth()->user()->branch_id;
     }
 }

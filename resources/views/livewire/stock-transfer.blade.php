@@ -5,14 +5,19 @@
         </h2>
     </x-slot>
 
-    <div class="grid grid-cols-2 divide-x-2 text-white -mx-4">
-        <a class="bg-gray-500 py-2 pl-2 lg:pl-6 " href="">Transfer stocks</a>
-        <a class="bg-gray-600 p-2" href="">Receive stocks</a>
+    <div class="grid grid-cols-3 divide-x-2 text-white -mx-4">
+        <a class="bg-gray-500 py-2 pl-2 lg:pl-6 " href="">{{ __('Transfer')}}</a>
+        <a class="bg-gray-600 p-2" href="">{{ __('Transfered')}}</a>
+        <a class="bg-gray-600 p-2" href="">{{ __('Receive')}}</a>
     </div>
 
-    <ection class="py-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <section class="py-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+            <livewire:stock-transfers.transfer-cart />
+        </div>
+        
         <div class="space-y-4">
-            <x-text-input type="search" wire:model.live.debounce.1000ms="search" placeholder="Search product" />
+            <x-text-input type="search" name="search" wire:model.live.debounce.1000ms="search" placeholder="Search product" />
 
             <div class="md__table_wrapper">
                 <table class="md__table">
@@ -24,19 +29,17 @@
                     </thead>
                     <tbody class="md__tbody">
                         @foreach ($products as $product)
-                            <tr class="md__tr" wire:key="$product->id">
+                            <tr class="md__tr cursor-pointer" wire:key="$product->id" wire:click="addToCart({{$product->id}})">
                                 <td class="md__td">{{ $product->name }}</td>
                                 <td class="md__td">{{ number_format($product->stock)}}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                @empty($products->items())
+                  <x-empty>{{__('No products found!')}}</x-empty>
+                @endempty
             </div>
         </div>
-
-
-        <div>
-            <livewire:stock-transfers.transfer-cart />
-        </div>
-    </ection>
+    </section>
 </div>

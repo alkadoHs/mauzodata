@@ -8,6 +8,6 @@ class StockTransferObserver
     public function creating(StockTransfer $stockTransfer): void
     {
         $stockTransfer->branch_id = auth()->user()->branch_id;
-        // $expense->user_id = auth()->id();
+        $stockTransfer->user_id = auth()->id();
     }
 }

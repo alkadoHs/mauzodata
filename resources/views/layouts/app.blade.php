@@ -39,8 +39,7 @@
                 @endsession
     
                 <!-- Page Content -->
-                <main class="px-4 max-w-full">
-
+                <main class="px-4 pb-8 max-w-full">
                     {{ $slot }}
                 </main>
             </div>
