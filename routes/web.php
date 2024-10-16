@@ -10,6 +10,8 @@ use App\Livewire\Expenses;
 use App\Livewire\InvoiceDetail;
 use App\Livewire\Invoices;
 use App\Livewire\NewStocks;
+use App\Livewire\NewStocks\AllNewStocks;
+use App\Livewire\NewStocks\NewStockDetail;
 use App\Livewire\PendingOrders;
 use App\Livewire\PointOfSale;
 use App\Livewire\Product;
@@ -72,6 +74,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('stock-transfer/transfered', TransferedStock::class)->name('stock-transfer.transfered');
 
     Route::get('new-stock', NewStocks::class)->name('new-stock');
+    Route::get('new-stock/{newStock}/preview', NewStockDetail::class)->name('new-stock.preview');
+    Route::get('new-stock/all-new-stocks', AllNewStocks::class)->name('new-stock.all');
 
     Route::get('inventory-system', ProductsIventory::class)->name('inventory');
 

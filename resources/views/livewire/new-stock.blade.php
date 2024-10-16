@@ -6,12 +6,12 @@
     </x-slot>
 
     <div class="grid grid-cols-2 divide-x-2 text-white -mx-4">
-        <a class="bg-gray-500 py-2 pl-2 lg:pl-6 " href="{{ route('stock-transfer')}}" 
+        <a class="bg-gray-500 py-2 pl-2 lg:pl-6 " href="{{ route('new-stock')}}" 
            wire:navigate
         >{{ __('New stock')}}</a>
-        <a class="bg-gray-600 p-2" href="{{ route('stock-transfer.transfered')}}"
+        <a class="bg-gray-600 p-2" href="{{ route('new-stock.all')}}"
            wire:navigate
-        >{{ __('History')}}</a>
+        >{{ __('All')}}</a>
     </div>
 
     <section class="py-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
