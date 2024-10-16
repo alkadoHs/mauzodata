@@ -11,7 +11,7 @@ state([
 ]);
 
 rules([
-    'qty' => "numeric|max:999999|min:0.1",
+    'qty' => "string|max:999999|min:0.1",
 ]);
 
 
@@ -22,17 +22,20 @@ mount(function (CartItem $item) {
 
 $updateCartItem = function () {
     $this->validate();
+
+    $qty = (float) str_replace(",","", $this->qty);
     
     $product = Product::find($this->cartItem->product_id);
 
     if($product->stock < $this->qty) {
         $this->qty = $this->cartItem->qty;
         session()->flash('error', "Stock is not enough. current stock for {$product->name} is: {$product->stock}");
+        return $this->redirect(route('pos'), navigate:true);
     } else {
-        if($this->qty > $product->whole_stock) {
-            $this->cartItem->update(['qty' => $this->qty, 'price' => $product->whole_price]);
+        if($product->whole_stock != 0 && $product->whole_price != 0 && $this->qty > $product->whole_stock) {
+            $this->cartItem->update(['qty' => $qty, 'price' => $product->whole_price]);
         } else {
-            $this->cartItem->update(['qty' => $this->qty, 'price' => $product->sale_price]);
+            $this->cartItem->update(['qty' => $qty, 'price' => $product->sale_price]);
         }
     }
 
