@@ -57,7 +57,7 @@
                     @endphp
                     @foreach ($newStocks as $newStock)
                         <tr wire:key="{{ $newStock->id }}" class="md__tr">
-                            <td class="md__td md__td1"">{{ $rowId++ }}</td>
+                            <td class="md__td md__td1">{{ $rowId++ }}</td>
                             <td class="md__td">{{ $newStock?->toBranch?->name }}</td>
                             <td class="md__td">{{ number_format($newStock?->new_stock_items_count, 2) }}</td>
                             <td class="md__td">{{ $newStock?->status }}</td>

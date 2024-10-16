@@ -20,10 +20,6 @@ class NewStockCart extends Component
     use WithPagination;
 
      
-    #[Url()]
-    #[Validate('required')]
-    public $branch_id = null;
-
     #[Computed(seconds:2)]
     #[On('added-to-cart')]
     #[On('item-updated')]

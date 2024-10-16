@@ -33,25 +33,9 @@
         {{ $this->newStocks->links() }}
     </div>
 
-     <div class="flex items-end gap-4">
-         <div class="space-y-1.5 w-full" wire:lazy>
-            <x-input-label for="branch_id" value="{{ __('Destination branch') }}" />
-            <select name="branch_id"
-                    wire:model="branch_id"
-                    wire:change="saveBranchId()"
-                    class="w-full py-1.5 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-cyan-500 dark:focus:border-cyan-600 focus:ring-cyan-500 dark:focus:ring-cyan-600 rounded-md shadow-sm"
-                    >
-                <option @disabled($branch_id) value="">{{ __('To branch')}}</option>
-                @foreach ($branches as $branch)
-                    <option wire:key="$branch->id" value="{{ $branch->id }}">{{ $branch->name }}</option>
-                @endforeach
-            </select>
-            <x-input-error :messages="$errors->get('branch_id')" class="mt-1" />
-         </div>
-
-         <div>
-            <x-primary-button wire:click="newstock">{{__('submit')}}</x-primary-button>
-         </div>
+     <div class="pt-8 max-w-xs">
+         <x-primary-button wire:click="newstock"
+            class="w-full justify-center font-semibold">{{__('submit')}}</x-primary-button>
      </div>
 
 </div>
