@@ -102,4 +102,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(StockTransfer::class);
     }
+
+    public function newStocks(): HasMany
+    {
+        return $this->hasMany(NewStock::class);
+    }
 }

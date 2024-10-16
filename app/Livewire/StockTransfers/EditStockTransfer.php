@@ -20,6 +20,8 @@ class EditStockTransfer extends Component
 
     public function updateItem()
     {
+        $this->validate();
+        
         $stock = (float) str_replace(',', '', $this->stock);
 
         if($stock > $this->item->product->stock) {

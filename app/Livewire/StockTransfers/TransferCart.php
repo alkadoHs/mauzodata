@@ -64,7 +64,7 @@ class TransferCart extends Component
 
         $items = $stockTransfer->stockTransferItems()->with('product')->get();
 
-        DB::transaction(function () use($items) {
+        DB::transaction(function () use($items, $stockTransfer) {
             foreach ($items as $item) {
                 // check if the product exist to the toBranch
                 $productExist = Product::where('branch_id',  $this->branch_id)
@@ -99,7 +99,7 @@ class TransferCart extends Component
             }
     
             // update status to transfered
-            auth()->user()->stockTransfer()->update(['status' => 'transfered']);
+            $stockTransfer->update(['status' => 'transfered']);
 
         }, 3);
 
