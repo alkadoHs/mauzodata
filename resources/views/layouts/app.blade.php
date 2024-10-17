@@ -15,9 +15,9 @@
     </head>
     <body class="font-sans antialiased overflow-hidden dark:bg-gray-950">
         <div class="flex items-start w-full max-w-7xl mx-auto overflow-hidden bg-gray-100 dark:bg-gray-900/90 dark:text-gray-400">
-            <nav class="hidden md:block print:hidden bg-cyan-950  sticky top-0 w-[290px] max-w-full p-2">
+            {{-- <nav class="hidden md:block print:hidden bg-cyan-950  sticky top-0 w-[290px] max-w-full p-2">
                 <livewire:layout.sidebar />
-            </nav>
+            </nav> --}}
             
             <div class="w-full max-w-full h-dvh overflow-auto print:overflow-hidden">
                 <!-- Page Heading -->

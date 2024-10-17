@@ -35,7 +35,8 @@
 
      <div class="pt-8 max-w-xs">
          <x-primary-button wire:click="newstock"
-            class="w-full justify-center font-semibold">{{__('submit')}}</x-primary-button>
+            class="w-full justify-center font-semibold"
+            >{{__('submit')}}</x-primary-button>
      </div>
 
 </div>

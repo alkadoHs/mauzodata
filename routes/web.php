@@ -16,7 +16,7 @@ use App\Livewire\PendingOrders;
 use App\Livewire\PointOfSale;
 use App\Livewire\Product;
 use App\Livewire\Products\Imports\ImportProductFromBranch;
-use App\Livewire\ProductsIventory;
+use App\Livewire\ProductsInventory;
 use App\Livewire\Reports;
 use App\Livewire\StockTransferDetail;
 use App\Livewire\StockTransfers;
@@ -77,7 +77,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('new-stock/{newStock}/preview', NewStockDetail::class)->name('new-stock.preview');
     Route::get('new-stock/all-new-stocks', AllNewStocks::class)->name('new-stock.all');
 
-    Route::get('inventory-system', ProductsIventory::class)->name('inventory');
+    Route::get('inventory-system', ProductsInventory::class)->name('inventory');
 
     Route::get('damages', Damages::class)->name('damages');
 
