@@ -13,6 +13,7 @@ class BranchScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('branch_id', auth()->user()->branch_id);
+        if(!$model->branch_id)
+            $builder->where('branch_id', auth()->user()->branch_id);
     }
 }

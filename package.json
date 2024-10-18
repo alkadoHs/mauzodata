@@ -16,7 +16,6 @@
     },
     "dependencies": {
         "@alpinejs/collapse": "^3.14.1",
-        "@alpinejs/mask": "^3.14.1",
-        "puppeteer": "^23.4.1"
+        "@alpinejs/mask": "^3.14.1"
     }
 }

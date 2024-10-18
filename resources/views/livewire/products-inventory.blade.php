@@ -11,11 +11,14 @@
                 <div class="flex justify-between gap-4">
                     <x-text-input type="search" name="search" wire:model.live.debounce.1000ms="search" placeholder="Search product ..." />
                     
-                    <livewire:products.create-product />
+                    <div class="flex items-center gap-4">
+                        <x-text-input type="date" name="from_date" wire:model.live.debounce.1000ms="from_date" />
+                        <x-text-input type="date" name="to_date" wire:model.live.debounce.1000ms="to_date" />
+                    </div>
                 </div>
         
                 <div class="grid grid-cols-1 lg:grid-cols-2 justify-between gap-4">
-                    
+                    <p>All products</p>
         
                     <div class="flex items-center shrink-0 gap-4 lg:justify-end">
                         <livewire:products.filters.filter-product-by-branch />
@@ -51,47 +54,47 @@
             <div class="md__table_wrapper" wire:lazy>
                 <table class="md__table">
                     <thead class="md__thead">
-                        <tr class="z-10">
+                        <tr class="z-10 sticky top-18">
                             <th class="md__th md__th1">S/N</th>
                             <th class="md__th text-left">{{__('Name')}}</th>
                             <th class="md__th text-right" title="Current stock">{{__('C.stock')}}</th>
                             <th class="md__th text-right" title="capital">{{__('Capital')}}</th>
-                            <th class="md__th text-right" title="expected revenue">{{__('E.Revenue')}}</th>
-                            <th class="md__th text-right" title="expected whole price revenue">{{__('E.W.Revenue')}}</th>
                             <th class="md__th text-right" title="sales count">{{__('S.count')}}</th>
                             <th class="md__th text-right" title="sales quantity">{{__('Out')}}</th>
                             <th class="md__th text-right" title="sales total">{{__('Sales total')}}</th>
                             <th class="md__th text-right" title="Average sales quantity">{{ __('A.S.Qty')}}</th>
                             <th class="md__th text-right" title="Average sales total">{{ __('A.S.Total')}}</th>
+                            <th class="md__th text-right" title="Transfered products">{{ __('Transfers')}}</th>
+                            <th class="md__th text-right" title="Prev stock">{{ __('Prev Stock')}}</th>
                         </tr>
                     </thead>
                     <tbody class="md__tbody">
                         @php
                         $rowId = 1;
                         @endphp
-                        @foreach ($products as $product)
+                        @foreach ($this->products as $product)
                             <tr wire:key="{{ $product->id }}" class="md__tr">
                                 <td class="md__td md__td1">{{ $rowId++ }}</td>
                                 <td class="md__td">{{ $product->name }}</td>
-                                <td class="md__td text-right">{{ number_format($product->stock, 2) }}</td>
-                                <td class="md__td text-right">{{ number_format($product->buy_price * $product->stock, 2) }}</td>
-                                <td class="md__td text-right">{{ number_format($product->sale_price * $product->stock, 2) }}</td>
-                                <td class="md__td text-right">{{ number_format($product->whole_price * $product->stock, 2) }}</td>
+                                <td class="md__td text-right">{{ number_format($product->stock) }}</td>
+                                <td class="md__td text-right">{{ number_format($product->buy_price * $product->stock,2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_count, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_sum_qty, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_sum_total, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_avg_qty, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_avg_total, 2) }}</td>
+                                <td class="md__td text-right">{{ number_format($product->stock_transfer_items_sum_stock, 2) }}</td>
+                                 <td class="md__td text-right">{{ number_format($product->stock + $product->order_items_sum_qty + $product->stock_transfer_items_sum_stock, 2) }}</td>
                             </tr>
                             @endforeach
                     </tbody>
                 </table>
-                @empty($products->items())
+                @empty($this->products->items())
                 <x-empty>{{__('No products found!')}}</x-empty>
                 @endempty
             </div>
             <div class="my-2">
-                {{ $products->links()}}
+                {{ $this->products->links()}}
             </div>
         </div>
     </section>

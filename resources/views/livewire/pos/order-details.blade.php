@@ -19,8 +19,7 @@ state([
 $products = computed(function () {
     $productsExistsToCart = auth()->user()->cartItems()->pluck('product_id')->toArray();
 
-    return Product::where('branch_id', auth()->user()->branch_id)
-                     ->where('name', 'LIKE', "%{$this->search}%")
+    return Product::where('name', 'LIKE', "%{$this->search}%")
                      ->whereNotIn('id', $productsExistsToCart)
                      ->paginate(3);
 });
@@ -64,9 +63,7 @@ $save = function () {
     auth()->user()->cart->update([
         'customer_id' => $this->customer_id,
         'payment_method_id' => $this->payment_method_id,
-        'isDrafted' => $this->isDrafted,
         'vendor_id' => $this->vendor_id,
-        'isCredit' => $this->isCredit,
         'transportFee' => $this->transportFee,
     ]);
 };

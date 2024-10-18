@@ -25,7 +25,7 @@ class FilterProductByBranch extends Component
     {
         auth()->user()->update(['branch_id' => $branch->id]);
 
-        $this->redirect(route('products'), navigate:true);
+        $this->redirect(url()->previous(), navigate:true);
     }
 
     public function render()

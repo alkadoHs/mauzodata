@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Spatie\Browsershot\Browsershot;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Illuminate\Http\Request;
 
-use function Spatie\LaravelPdf\Support\pdf ;
 
 class ExportController extends Controller
 {
@@ -34,7 +34,9 @@ class ExportController extends Controller
                         ->withSum('orderItems', 'total')
                         ->with(['customer', 'branch', 'paymentMethod', 'user', 'vendor'])
                         ->get();
-        return pdf()
+        return Pdf::withBrowsershot(function (Browsershot $browsershot) {
+                    $browsershot->setChromePath('/usr/bin/chromium-browser');
+                })
                 ->view('pdfs.invoices', ['invoices' => $invoices])
                 ->name("invoices.pdf")
                 ->download();

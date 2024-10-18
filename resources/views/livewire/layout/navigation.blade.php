@@ -14,11 +14,16 @@ $logout = function (Logout $logout) {
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-14">
-            <div class="flex items-center">
+            <div class="flex items-center gap-2">
+                <button @click="sidebarOpen = !sidebarOpen" 
+                        class="cursor-pointer outline-none p-1 border rounded-full"
+                >
+                    <x-heroicon-o-chevron-right class="size-6" />
+                </button>
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <x-application-logo class="block h-9 fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 

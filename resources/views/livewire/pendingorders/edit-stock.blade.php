@@ -28,7 +28,7 @@
                     @foreach ($orderItems as $orderItem)
                         <tr class="md__tr" wire:key="$orderItem->id">
                             <td class="md__td"></td>
-                            <td class="md__td">{{$orderItem->product->name}}</td>
+                            <td class="md__td">{{$orderItem?->product?->name}}</td>
                             <td class="md__td text-right">{{ $orderItem->v_qty }}</td>
                             <td class="md__td text-right flex justify-end">
                                 <livewire:pendingorders.edit-item-qty :key="$orderItem->id" :item="$orderItem" />
