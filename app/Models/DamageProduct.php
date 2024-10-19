@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\BranchScope;
 use App\Observers\DamageObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[ObservedBy(DamageObserver::class)]
+#[ScopedBy(BranchScope::class)]
 class DamageProduct extends Model
 {
     use HasFactory;

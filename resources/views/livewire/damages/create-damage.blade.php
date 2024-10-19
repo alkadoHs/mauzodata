@@ -31,6 +31,8 @@ $store = function () {
         $product->decrement('stock', $validated['amount']);
 
         session()->flash('success', 'Damage added.');
+
+        $this->reset();
     }
 
 
@@ -71,7 +73,7 @@ with([
                             >
                         <option value="">{{ __('Select product')}}</option>
                         @foreach ($products as $product)
-                            <option wire:key="$product->id" value="{{ $product->id }}">{{ $product->name }}</option>
+                            <option wire:key="$product->id" value="{{ $product->id }}">{{ $product->name }}({{ $product->stock }})</option>
                         @endforeach
                     </select>
                     <x-input-error :messages="$errors->get('product_id')" class="mt-2" />

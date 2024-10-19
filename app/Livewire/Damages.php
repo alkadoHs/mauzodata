@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\DamageProduct;
+use App\Models\Product;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
@@ -17,6 +18,14 @@ class Damages extends Component
     public function damages()
     {
         return DamageProduct::with(['product', 'user'])->whereRelation('product', 'name', 'LIKE', "%{$this->search}%")->paginate(25);
+    }
+
+    public function delete(DamageProduct $damageProduct)
+    {
+        $product = Product::find($damageProduct->product_id)
+                        ->increment('stock', $damageProduct->amount);
+                        
+        $damageProduct->delete();
     }
 
 

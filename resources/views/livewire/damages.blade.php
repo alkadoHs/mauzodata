@@ -1,7 +1,7 @@
 <div clss="w-full">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            {{ __('Damages')}}
+            {{ __('Damages')}} (<span class="text-cyan-500">{{ auth()->user()->branch->name}}</span>)
         </h2>
     </x-slot>
 
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="flex items-center shrink-0 gap-4 lg:justify-end">
-                    <x-secondary-button>Filter by branch</x-secondary-button>
+                    <livewire:products.filters.filter-product-by-branch />
                     
 
                     <x-dropdown align="right" width="48">
@@ -80,7 +80,7 @@
                             <td class="md__td">
                                 <div class="flex items-center gap-3">
                                     
-                                    <button wire:click="deletedamage({{$damage->id}})" 
+                                    <button wire:click="delete({{$damage->id}})" 
                                             wire:confirm.prompt="Are you sure that you want to delete - {{ $damage->name }}?\n\nType DELETE to confirm|DELETE"
                                     >
                                         <x-heroicon-o-trash class="size-5 text-red-500" />
