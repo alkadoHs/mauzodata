@@ -73,4 +73,9 @@ class Branch extends Model
     {
         return $this->hasMany(NewStock::class);
     }
+
+    public function damageProducts(): HasMany
+    {
+        return $this->hasMany(DamageProduct::class);
+    }
 }

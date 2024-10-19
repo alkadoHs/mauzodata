@@ -60,4 +60,9 @@ class Product extends Model
     {
         return $this->hasMany(NewStockItem::class);
     }
+
+    public function damageProducts(): HasMany
+    {
+        return $this->hasMany(DamageProduct::class);
+    }
 }
