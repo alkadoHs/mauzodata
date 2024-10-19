@@ -23,30 +23,30 @@
 
                 <div class="flex items-center shrink-0 gap-4 lg:justify-end">
                     <livewire:products.filters.filter-product-by-branch />
-                    
+
+                    <x-text-input type="date" name="date" wire:model.live.debounce.2000ms="date" />
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <x-icon-button class="p-0.5" title="{{ __('Import damages from another branch')}}">
-                                <x-heroicon-o-folder-arrow-down class="size-6" />
+                                <x-heroicon-o-funnel class="size-6" />
                             </x-icon-button>
                         </x-slot>
 
-                        <x-slot name="content">
-                            <button>
-                                <x-dropdown-link class="w-full text-start" :href="route('import-product-from-branch')">
-                                    <x-heroicon-m-arrow-right-circle class="size-4 mr-2" />
-                                    {{ __('Import from branch') }}
-                                </x-dropdown-link>
-                            </button>
-
-                            <!-- Authentication -->
-                            <button wire:confirm="We are working on this feature." class="w-full text-start">
-                                <x-dropdown-link>
-                                    <x-heroicon-m-document-text class="size-4 text-teal-400 mr-2" />
-                                    {{ __('Import from excel') }}
-                                </x-dropdown-link>
-                            </button>
+                        <x-slot name="content" class="p-3">
+                            <div class="p-3 space-y-1.5">
+                                <x-input-label for="user_id" value="{{ __('By user') }}" />
+                
+                                <select name="user_id" 
+                                        wire:model.live.debounce.2000ms="user_id"
+                                        class="w-full py-1.5 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-teal-500 dark:focus:border-teal-600 focus:ring-teal-500 dark:focus:ring-teal-600 rounded-md shadow-sm"
+                                        >
+                                    <option value="">{{ __('filter by user')}}</option>
+                                    @foreach ($users as $user)
+                                        <option wire:key="$user->id" value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </x-slot>
                     </x-dropdown>
                 </div>
