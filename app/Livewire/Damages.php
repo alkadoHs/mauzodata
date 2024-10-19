@@ -9,10 +9,12 @@ use Livewire\Component;
 
 class Damages extends Component
 {
+    public $search;
+
     #[Computed()]
     public function damages()
     {
-        return DamageProduct::paginate(25);
+        return DamageProduct::whereRelation('product', 'name', 'LIKE', "%{$this->search}%")->paginate(25);
     }
 
 
