@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\DamageProduct;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Damages extends Component
@@ -12,9 +13,10 @@ class Damages extends Component
     public $search;
 
     #[Computed()]
+    #[On('damages-changed')]
     public function damages()
     {
-        return DamageProduct::whereRelation('product', 'name', 'LIKE', "%{$this->search}%")->paginate(25);
+        return DamageProduct::with(['product', 'user'])->whereRelation('product', 'name', 'LIKE', "%{$this->search}%")->paginate(25);
     }
 
 

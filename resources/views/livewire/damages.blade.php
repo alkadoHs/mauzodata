@@ -11,7 +11,7 @@
             <div class="flex justify-between gap-4">
                 <x-text-input type="search" name="search" wire:model.live.debounce.1000ms="search" placeholder="Search product ..." />
                 
-                <x-primary-button>Create damage</x-primary-button>
+                <livewire:damages.create-damage />
             </div>
     
             <div class="grid grid-cols-1 lg:grid-cols-2 justify-between gap-4">
