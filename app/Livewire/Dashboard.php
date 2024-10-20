@@ -20,6 +20,12 @@ class Dashboard extends Component
     #[Url()]
     public ?string $to_date = null;
 
+    public function mount() {
+        if(auth()->user()->role != 'admin') {
+            $this->redirect(route('my-sales'), navigate:true);
+        }
+    }
+
     #[Layout('layouts.app')]
     public function render()
     {

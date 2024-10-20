@@ -8,11 +8,24 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class MySales extends Component
 {
+    public $search = null;
+
+    #[Computed()]
+    public function products()
+    {
+        return OrderItem::with(['order.user', 'product'])
+                        ->whereRelation('product', 'name', 'LIKE', "%{$this->search}%")
+                        ->whereDate('created_at', today())
+                        ->whereRelation('order', 'user_id', auth()->id())
+                        ->latest()->paginate(100);
+    }
+
     #[Layout('layouts.app')]
     public function render()
     {
@@ -25,14 +38,6 @@ class MySales extends Component
             'expenses' => ExpenseItem::whereRelation('expense','user_id', auth()->user()->id)
                                   ->whereDate('created_at', today())
                                   ->sum('cost'),
-
-            'products'  => OrderItem::with(['product'])
-                                ->select('product_id', DB::raw('SUM(qty) as total_qty'), DB::raw('SUM(total) as total_price'), DB::raw('MAX(created_at) as latest_created_at'))
-                                ->whereRelation('order', 'user_id', auth()->id())
-                                ->whereDate('created_at', today())
-                                ->groupBy('product_id')
-                                ->orderByDesc('latest_created_at')
-                                ->get()
 
         ]);
     }

@@ -99,12 +99,17 @@ layout('layouts.app');
                     </thead>
                     <tbody class="md__tbody">
                         @php
-                        $id = 1;
+                        $id = 1; $total = 0; $qty = 0; $profit = 0;
                         @endphp
                         @foreach ($this->products as $product)
+                         @php
+                         $qty += $product->qty;
+                         $total += $product->total;
+                         $profit += $product->profit;
+                         @endphp
                             <tr class="md__tr" wire:key="$product->id">
                                 <td class="md__td md__td1">{{ $id++ }}</td>
-                                <td class="md__td md__td1">{{ $product->order->id }}</td>
+                                <td class="md__td md__td1">{{ $product->order?->id }}</td>
                                 <td class="md__td">{{ date('d/m/Y H:m:i', strtotime($product->created_at)) }}</td>
                                 <td class="md__td">{{ $product->order?->user?->name }}</td>
                                 <td class="md__td">{{ $product->product?->name }}</td>
@@ -115,6 +120,19 @@ layout('layouts.app');
                             </tr>
                         @endforeach
                     </tbody>
+                    <tfoot class="md__tfoot">
+                        <tr>
+                            <td class="md__td"></td>
+                            <th class="md__th">TOTAL</th>
+                            <td class="md__td"></td>
+                            <td class="md__td"></td>
+                            <td class="md__td"></td>
+                            <td class="md__td"></td>
+                            <td class="md__td">{{ number_format($qty, 2)}}</td>
+                            <td class="md__td">{{ number_format($total, 2)}}</td>
+                            <th class="md__th">{{ number_format($profit, 2)}}</th>
+                        </tr>
+                    </tfoot>
                 </table>
                 @empty($this->products->items())
                     <x-empty>{{__('No products sold')}}</x-empty>

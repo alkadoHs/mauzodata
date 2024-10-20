@@ -33,35 +33,63 @@
             </div>
 
         </div>
-    <div class="sm:px-4 lg:px-6 gap-4">
-        
-                <div class="md__table_wrapper">
-                    <table class="md__table">
-                        <thead class="md__thead">
-                            <tr>
-                                <th class="md__th md__th1">S/N</th>
-                                <th class="md__th">Product</th>
-                                <th class="md__th text-right">Qty</th>
-                                <th class="md__th text-right">Total price</th>
-                                <th class="md__th text-right">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody class="md__tbody">
-                            @php
-                            $id = 1;
-                            @endphp
-                            @foreach ($products as $product)
-                                <tr class="md__tr" wire:key="$product->id">
-                                    <td class="md__td md__td1">{{ $id++ }}</td>
-                                    <td class="md__td">{{ $product->product->name }}</td>
-                                    <td class="md__td text-right">{{ number_format( $product->total_qty, 2)}}</td>
-                                    <td class="md__td text-right">{{ number_format($product->total_price, 2)}}</td>
-                                    <td class="md__td text-right">{{ date('d/m/Y H:m', strtotime($product->latest_created_at))}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+        <div class="sm:px-4 lg:px-6 gap-4">
+            <div class="flex justify-between flex-wrap gap-4 py-6">
+                <div>
+                    <x-text-input type="search" name="search" placeholder="Search product" wire:model.live.debounce.1000ms="search" />
                 </div>
+                
+            </div>
+            <div class="md__table_wrapper">
+                <table class="md__table">
+                    <thead class="md__thead">
+                        <tr>
+                            <th class="md__th md__th1">S/N</th>
+                            <th class="md__th md__th1">INVO NO</th>
+                            <th class="md__th text-left">DATE</th>
+                            <th class="md__th text-left">PRODUCT</th>
+                            <th class="md__th text-left">UNIT</th>
+                            <th class="md__th text-right">QTY</th>
+                            <th class="md__th text-right">PRICE</th>
+                        </tr>
+                    </thead>
+                    <tbody class="md__tbody">
+                        @php
+                        $id = 1; $total = 0; $qty = 0; $profit = 0;
+                        @endphp
+                        @foreach ($this->products as $product)
+                         @php
+                         $qty += $product->qty;
+                         $total += $product->total;
+                         $profit += $product->profit;
+                         @endphp
+                            <tr class="md__tr" wire:key="$product->id">
+                                <td class="md__td md__td1">{{ $id++ }}</td>
+                                <td class="md__td md__td1">{{ $product->order?->id }}</td>
+                                <td class="md__td">{{ date('d/m/Y H:m:i', strtotime($product->created_at)) }}</td>
+                                <td class="md__td">{{ $product->product?->name }}</td>
+                                <td class="md__td">{{ $product->product?->unit }}</td>
+                                <td class="md__td text-right">{{ number_format( $product->qty, 2)}}</td>
+                                <td class="md__td text-right">{{ number_format($product->total, 2)}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot class="md__tfoot">
+                        <tr>
+                            <td class="md__td"></td>
+                            <th class="md__th">TOTAL</th>
+                            <td class="md__td"></td>
+                            <td class="md__td"></td>
+                            <td class="md__td"></td>
+                            <td class="md__td text-right">{{ number_format($qty, 2)}}</td>
+                            <th class="md__th text-right">{{ number_format($total, 2)}}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                @empty($this->products->items())
+                    <x-empty>{{__('No products sold')}}</x-empty>
+                @endempty
+            </div>
     </div>
     </div>
 </div>
