@@ -15,7 +15,7 @@
     </head>
     <body class="font-sans antialiased overflow-hidden dark:bg-gray-950">
         <div x-data="{ sidebarOpen: $persist(true) }"  class="flex items-start w-full overflow-hidden bg-gray-100 dark:bg-gray-900/90 dark:text-gray-400">
-            <nav class="hidden md:block print:hidden bg-cyan-950  sticky top-0 w-[270px] max-w-full p-2" 
+            <nav class="hidden md:block print:hidden bg-cyan-950  sticky top-0 w-[300px] max-w-full p-2" 
                 x-show="sidebarOpen == true" x-transition>
                 <livewire:layout.sidebar />
             </nav>
