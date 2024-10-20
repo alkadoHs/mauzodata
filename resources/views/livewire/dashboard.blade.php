@@ -16,7 +16,7 @@
     </div>
 
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-4 lg:px-6 grid grid-cols-3 gap-4 overflow-x-auto">
+        <div class="sm:px-4 lg:px-6 grid grid-cols-3 gap-4 overflow-x-auto">
             <div class="p-4 rounded-lg space-y-4 border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700">
                 <p class="font-medium leading-none">Capital</p>
                 <p class="text-xl font-medium">{{ number_format($capital)}}</p>

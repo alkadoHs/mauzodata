@@ -26,11 +26,14 @@ class MySales extends Component
                                   ->whereDate('created_at', today())
                                   ->sum('cost'),
 
-            'products'  => OrderItem::with(['product'])->select('product_id', DB::raw('SUM(qty)  as total_qty'), DB::raw('SUM(total)  as total_price'))
+            'products'  => OrderItem::with(['product'])
+                                ->select('product_id', DB::raw('SUM(qty) as total_qty'), DB::raw('SUM(total) as total_price'), DB::raw('MAX(created_at) as latest_created_at'))
                                 ->whereRelation('order', 'user_id', auth()->id())
                                 ->whereDate('created_at', today())
-                                ->orderByDesc('created_at')
-                                ->groupBy(['product_id'])->get(),
+                                ->groupBy('product_id')
+                                ->orderByDesc('latest_created_at')
+                                ->get()
+
         ]);
     }
 }

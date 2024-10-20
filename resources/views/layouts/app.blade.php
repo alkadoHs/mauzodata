@@ -14,7 +14,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased overflow-hidden dark:bg-gray-950">
-        <div x-data="{ sidebarOpen: $persist(true) }"  class="flex items-start w-full max-w-7xl mx-auto overflow-hidden bg-gray-100 dark:bg-gray-900/90 dark:text-gray-400">
+        <div x-data="{ sidebarOpen: $persist(true) }"  class="flex items-start w-full overflow-hidden bg-gray-100 dark:bg-gray-900/90 dark:text-gray-400">
             <nav class="hidden md:block print:hidden bg-cyan-950  sticky top-0 w-[270px] max-w-full p-2" 
                 x-show="sidebarOpen == true" x-transition>
                 <livewire:layout.sidebar />
@@ -27,7 +27,7 @@
                  </div>
                 @if (isset($header))
                     <header class="bg-cyan-800 text-white print:hidden">
-                        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                        <div class="py-4 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
                     </header>
