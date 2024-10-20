@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        // Company::factory()->create([
-        //     'name' => 'HEKIMA BEAUTY SHOP',
-        //     'address' => 'P.O.BOX 295, Uyole, Mbeya',
-        //     'email' => 'hekimabeauty@gmail.com',
-        //     'phone' => '076000000000',
-        // ]);
+        Company::factory()->create([
+            'name' => 'HEKIMA BEAUTY SHOP',
+            'address' => 'P.O.BOX 295, Uyole, Mbeya',
+            'email' => 'hekimabeauty@gmail.com',
+            'phone' => '076000000000',
+        ]);
 
         Branch::factory()->create([
             'company_id' => 1,
