@@ -10,7 +10,6 @@ class EditStockNewStock extends Component
 {
     public NewStockItem $item; 
 
-    #[Validate('required|string|min:0|max:10')]
     public $stock = 0.00;
 
     public function mount(NewStockItem $item)
@@ -20,8 +19,6 @@ class EditStockNewStock extends Component
 
     public function updateItem()
     {
-        $this->validate();
-        
         $stock = (float) str_replace(',', '', $this->stock);
 
         $this->item->update(['stock' => $stock]);
