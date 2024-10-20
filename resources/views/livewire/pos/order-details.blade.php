@@ -118,8 +118,10 @@ $completeOrder = function (): void {
         //delete the cart
         $cart->delete();
 
+        session()->flash('success', 'Sales made successfully.');
+
         //redirect user to invoice created
-        $this->redirect(route('invoices.view', $order->id), navigate:true);
+        $this->redirect(route('pos'), navigate:true);
     }, attempts: 3);
 
 };

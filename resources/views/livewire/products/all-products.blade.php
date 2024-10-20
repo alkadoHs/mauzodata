@@ -95,7 +95,7 @@
                 </tbody>
             </table>
             @empty($this->products->items())
-            <x-empty>{{__('No products found!')}}</x-empty>
+              <x-empty>{{__('No products found!')}}</x-empty>
             @endempty
         </div>
         <div class="my-2">

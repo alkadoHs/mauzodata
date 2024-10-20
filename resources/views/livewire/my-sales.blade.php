@@ -33,36 +33,36 @@
             </div>
 
         </div>
-<div class="sm:px-4 lg:px-6 gap-4">
-    
-            <div class="md__table_wrapper">
-                <table class="md__table">
-                    <thead class="md__thead">
-                        <tr>
-                            <th class="md__th md__th1">S/N</th>
-                            <th class="md__th">Product</th>
-                            <th class="md__th text-right">Qty</th>
-                            <th class="md__th text-right">Total price</th>
-                            <th class="md__th text-right">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody class="md__tbody">
-                        @php
-                        $id = 1;
-                        @endphp
-                        @foreach ($products as $product)
-                            <tr class="md__tr" wire:key="$product->id">
-                                <td class="md__td md__td1">{{ $id++ }}</td>
-                                <td class="md__td">{{ $product->product->name }}</td>
-                                <td class="md__td text-right">{{ number_format( $product->total_qty, 2)}}</td>
-                                <td class="md__td text-right">{{ number_format($product->total_price, 2)}}</td>
-                                <td class="md__td text-right">{{ date('d/m/Y H:m', strtotime($product->latest_created_at))}}</td>
+    <div class="sm:px-4 lg:px-6 gap-4">
+        
+                <div class="md__table_wrapper">
+                    <table class="md__table">
+                        <thead class="md__thead">
+                            <tr>
+                                <th class="md__th md__th1">S/N</th>
+                                <th class="md__th">Product</th>
+                                <th class="md__th text-right">Qty</th>
+                                <th class="md__th text-right">Total price</th>
+                                <th class="md__th text-right">Date</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-</div>
+                        </thead>
+                        <tbody class="md__tbody">
+                            @php
+                            $id = 1;
+                            @endphp
+                            @foreach ($products as $product)
+                                <tr class="md__tr" wire:key="$product->id">
+                                    <td class="md__td md__td1">{{ $id++ }}</td>
+                                    <td class="md__td">{{ $product->product->name }}</td>
+                                    <td class="md__td text-right">{{ number_format( $product->total_qty, 2)}}</td>
+                                    <td class="md__td text-right">{{ number_format($product->total_price, 2)}}</td>
+                                    <td class="md__td text-right">{{ date('d/m/Y H:m', strtotime($product->latest_created_at))}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+    </div>
     </div>
 </div>
 

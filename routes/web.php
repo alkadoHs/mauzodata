@@ -95,5 +95,9 @@ Route::controller(ExportController::class)->prefix('export/pdf')->middleware(['a
     Route::get('invoices/{invoice}', 'invoice')->name('export.invoice');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Volt::route('reports/user-sales', 'reports.user-sales')->name('user-sales');
+});
+
 
 require __DIR__.'/auth.php';

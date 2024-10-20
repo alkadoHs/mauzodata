@@ -21,7 +21,7 @@
                     <p>All products</p>
         
                     <div class="flex items-center shrink-0 gap-4 lg:justify-end">
-                        <livewire:products.filters.filter-product-by-branch />
+                        {{-- <livewire:products.filters.filter-product-by-branch /> --}}
                         
         
                         <x-dropdown align="right" width="48">
@@ -58,6 +58,7 @@
                             <th class="md__th md__th1">S/N</th>
                             <th class="md__th text-left">{{__('Name')}}</th>
                             <th class="md__th text-right" title="Current stock">{{__('C.stock')}}</th>
+                            <th class="md__th text-right" title="New stock">{{__('Added')}}</th>
                             <th class="md__th text-right" title="capital">{{__('Capital')}}</th>
                             <th class="md__th text-right" title="sales count">{{__('S.count')}}</th>
                             <th class="md__th text-right" title="sales quantity">{{__('Out')}}</th>
@@ -77,14 +78,14 @@
                                 <td class="md__td md__td1">{{ $rowId++ }}</td>
                                 <td class="md__td">{{ $product->name }}</td>
                                 <td class="md__td text-right">{{ number_format($product->stock) }}</td>
+                                <td class="md__td text-right">{{ number_format($product->new_stock_items_sum_stock, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->buy_price * $product->stock,2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_count, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_sum_qty, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_sum_total, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_avg_qty, 2) }}</td>
                                 <td class="md__td text-right">{{ number_format($product->order_items_avg_total, 2) }}</td>
-                                {{-- <td class="md__td text-right">{{ number_format($product->stock_transfer_items_sum_stock, 2) }}</td> --}}
-                                 <td class="md__td text-right">{{ number_format($product->stock + $product->order_items_sum_qty + $product->stock_transfer_items_sum_stock, 2) }}</td>
+                                <td class="md__td text-right">{{ number_format($product->stock + $product->order_items_sum_qty + $product->stock_transfer_items_sum_stock, 2) }}</td>
                             </tr>
                             @endforeach
                     </tbody>

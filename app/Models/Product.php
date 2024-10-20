@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 #[ObservedBy(ProductObserver::class)]
-#[ScopedBy(BranchScope::class)]
+// #[ScopedBy(BranchScope::class)]
 class Product extends Model
 {
     use HasFactory;

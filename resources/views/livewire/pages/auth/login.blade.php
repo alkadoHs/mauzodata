@@ -17,7 +17,12 @@ $login = function () {
 
     Session::regenerate();
 
-    $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+    if(auth()->user()->role == 'admin') {
+        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+    } else {
+        $this->redirectIntended(default: route('my-sales', absolute: false), navigate: true);
+    }
+
 };
 
 ?>
