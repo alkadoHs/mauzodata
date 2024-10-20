@@ -59,11 +59,12 @@
                 {{-- <tr class="transition-colors border-b dark:border-gray-700 hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50">
                     <td class="p-2 text-sm font-semibold">Total Transport Fee</td>
                     <td class="p-2 text-sm text-right text-bold dark:text-white">{{ number_format($totalTransport, 2) }}</td>
-                </tr> --}}
+                </tr> 
                 <tr class="transition-colors border-b dark:border-gray-700 hover:bg-gray-200/90 dark:hover:bg-gray-700/50 data-[state=selected]:bg-gray-100/50">
                     <td class="p-2 text-sm font-semibold">Price + transport </td>
                     <td class="p-2 text-sm text-right text-bold dark:text-white">{{ number_format($totalPrice + $totalTransport, 2) }}</td>
                 </tr>
+                --}}
             </tbody>
         </table>
     </div>
