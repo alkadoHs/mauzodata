@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -19,21 +20,21 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Company::factory()->create([
+        DB::table('companies')->insert([
             'name' => 'Mauzodata Company LTD',
             'address' => 'P.O.BOX 295, Ilomba, Mbeya',
             'email' => 'mauzodata@gmail.com',
             'phone' => '0760000000',
         ]);
 
-        Branch::factory()->create([
+        DB::table('branches')->insert([
             'company_id' => 1,
             'name' => 'MAUZODATA SHOP',
             'address' => 'P.O.BOX 295, Ilomba, Mbeya',
             'phone' => '076000000000',
         ]);
 
-        User::factory()->create([
+        DB::table('users')->insert([
             'branch_id' => 1,
             'company_id' => 1,
             'name' => 'Alkado Hs',
