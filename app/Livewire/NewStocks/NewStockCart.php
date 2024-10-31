@@ -49,7 +49,6 @@ class NewStockCart extends Component
 
     public function newstock()
     {
-        $this->validate();
 
         $newStock = NewStock::where([
                                         ['user_id', auth()->id()],

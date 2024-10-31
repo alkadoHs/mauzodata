@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\PdfReports;
 use App\Livewire\CreditSales;
 use App\Livewire\CreditSales\CreditSaleDetail;
 use App\Livewire\Customers;
@@ -18,6 +19,7 @@ use App\Livewire\Product;
 use App\Livewire\Products\Imports\ImportProductFromBranch;
 use App\Livewire\ProductsInventory;
 use App\Livewire\Reports;
+use App\Livewire\Reports\TimeRange;
 use App\Livewire\StockTransferDetail;
 use App\Livewire\StockTransfers;
 use App\Livewire\StockTransfers\TransferedStock;
@@ -25,16 +27,15 @@ use App\Livewire\SystemSetup;
 use App\Livewire\Users;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use function Spatie\LaravelPdf\Support\pdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 Route::view('/', 'welcome');
 
 Route::get('/pdf', function () {
      $data = ['name' => 'John Doe'];
 
-        return pdf()
-            ->view('pdf', $data)
-            ->name('invoice-2023-04-10.pdf');
+     $pdf = Pdf::loadView('pdf', $data);
+    return $pdf->download('invoice.pdf');
 });
 
 Route::get('dashboard', Dashboard::class)
@@ -88,6 +89,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::controller(ExportController::class)->prefix('export/pdf')->middleware(['auth', 'verified'])->group(function () {
     Route::get('invoices', 'invoices')->name('export.invoices');
     Route::get('invoices/{invoice}', 'invoice')->name('export.invoice');
+});
+
+Route::prefix('reports')->middleware(['verified', 'auth'])->group(function () {
+    Route::get('date-range', TimeRange::class)->name('time-range');
+});
+
+Route::controller(PdfReports::class)->middleware(['verified', 'auth'])->group(function () {
+    Route::get('reports/pdfs/time-range', 'time_range_sales')->name('reports.pdf.time-range');
 });
 
 
