@@ -8,7 +8,6 @@ $classes = ($active ?? false)
 
 <a href="{{ $url }}" 
    {{ $attributes->merge(['class' => $classes])}}
-   wire:navigate
    >
     <div {{ $attributes->merge(["class" => "size-7 rounded-lg text-gray-400 dark:text-white"])}}
     >

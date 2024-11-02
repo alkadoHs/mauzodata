@@ -32,5 +32,6 @@
                 <p class="text-xl font-medium">{{ number_format($profit)}}</p>
             </div>
         </div>
+
     </div>
 </div>
