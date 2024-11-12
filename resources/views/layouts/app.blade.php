@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html class="dark">
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -11,11 +11,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
+        <wireui:scripts />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased overflow-hidden dark:bg-gray-950">
         <div x-data="{ sidebarOpen: $persist(true) }"  class="flex items-start w-full overflow-hidden bg-gray-100 dark:bg-gray-900/90 dark:text-gray-400">
-            <nav class="hidden md:block print:hidden bg-cyan-950  sticky top-0 w-[300px] max-w-full p-2" 
+            <nav class="hidden md:block print:hidden bg-cyan-950 dark:bg-gray-900  sticky top-0 w-[300px] max-w-full p-2" 
                 x-show="sidebarOpen == true" x-transition>
                 <livewire:layout.sidebar />
             </nav>

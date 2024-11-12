@@ -37,12 +37,12 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'branch_id' => 1,
             'company_id' => 1,
-            'name' => 'Alkado Hs',
-            'email' => 'alkado@gmail.com',
+            'name' => 'Mauzodata admin',
+            'email' => 'admin@mauzodata.com',
             'role' => 'admin',
             'phone' => '07600000000',
             'email_verified_at' => now(),
-            'password' => Hash::make('Alkado$255'),
+            'password' => Hash::make('code2525'),
             'remember_token' => Str::random(10)
         ]);
     }

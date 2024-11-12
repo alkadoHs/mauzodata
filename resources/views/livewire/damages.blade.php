@@ -1,7 +1,7 @@
 <div clss="w-full">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            {{ __('Damages')}} (<span class="text-cyan-500">{{ auth()->user()->branch->name}}</span>)
+            {{ __('Damages')}} (<span class="text-cyan-500">{{ auth()->user()?->branch?->name}}</span>)
         </h2>
     </x-slot>
 
