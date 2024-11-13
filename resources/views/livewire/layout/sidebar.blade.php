@@ -9,7 +9,7 @@ use function Livewire\Volt\{state};
 <div class="h-dvh overflow-hidden pb-5 ">
     <div class="pb-3 flex justify-center items-center">
         <div class="size-16 rounded-lg bg-gray-700/10">
-            <img src="{{ asset('logo2.png')}}" loading="lazy" alt="logo">
+            <img src="{{ asset('logo.png')}}" loading="lazy" alt="logo">
         </div>
     </div>
 
