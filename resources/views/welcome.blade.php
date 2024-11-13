@@ -196,7 +196,7 @@
                 <p class="font-semibold text-5xl text-green-600">100%</p>
                 <h3 class="mt-5 font-medium text-lg text-white">Usahihi wa kimahesabu</h3>
                 <akiki class="mt-1 text-gray-400">Binadamu tunaweza kukosea lakini kompyuta ikipewa maelekezo haiwezi kukosea, itafanya kama ilivyoelekezwa kwa usahihi na kwa wakati.
-                   Mfumo wa mauzodata umepewa maelekezo ya kiabiashara na ya kitaalamu, Jinsi unavyotakiwa kukusanya taarifa za mauzo na matumizi ya ofisi bila kukosea. Babala ya kuhangaika na madaftari na calculator na excel, sasa mfumo utafanya yote hayo badala yako.</p>
+                   Mfumo wa mauzodata umepewa maelekezo ya kiabiashara na ya kitaalamu, Jinsi unavyotakiwa kukusanya taarifa za mauzo na matumizi ya ofisi bila kukosea. Badala ya kuhangaika na madaftari na calculator na excel, sasa mfumo utafanya yote hayo badala yako.</p>
               </div>
             </div>
             <p class="mt-auto">
@@ -687,7 +687,7 @@
               </svg>
               <div class="grow">
                 <h4 class="text-white font-semibold">Mawasiliano kwa simu</h4>
-                <p class="mt-1 text-gray-400">0764940382 / 0678940382.</p>
+                <p class="mt-1 text-gray-400">0764940382 / 0678940382 / 0717861507.</p>
                 <p class="mt-2">
                   <a class="group inline-flex items-center gap-x-2 font-medium text-sm text-cyan-500 decoration-2 hover:underline focus:outline-none focus:underline" href="tel:+255764940382">
                     Piga simu
