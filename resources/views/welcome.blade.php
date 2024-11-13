@@ -13,7 +13,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mfumo wa mauzo unaosimamia maduka na kufanya hesabu zote za kibiashara.">
   <meta name="twitter:description" content="Pata mfumo wa mauzo wa kidigitali kwa ajili ya kufanya hesabu zote za kibiashara bila kutumia madaftari, calculator au excel.">
-  <meta name="twitter:image" content="https://mauzodata.com/assets/img/og-image.png">
+  <meta name="twitter:image" content="{{ asset('software.png')}}">
 
   <meta property="og:url" content="https://mauzodata.com/">
   <meta property="og:locale" content="sw_TZ">
@@ -21,7 +21,7 @@
   <meta property="og:site_name" content="Mauzodata">
   <meta property="og:title" content="Mfumo wa mauzo unaosimamia maduka na kufanya hesabu zote za kibiashara.">
   <meta property="og:description" content="Pata mfumo wa mauzo wa kidigitali kwa ajili ya kufanya hesabu zote za kibiashara bila kutumia madaftari, calculator au excel.">
-  <meta property="og:image" content="https://preline.co/assets/img/og-image.png">
+  <meta property="og:image" content="{{ asset('software.png')}}">
 
   <!-- Title -->
   <title>Mauzodata - Mfumo wa mauzo wa kidigitali</title>
