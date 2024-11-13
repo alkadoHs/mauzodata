@@ -635,120 +635,13 @@
         <!-- Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16">
           <div class="md:order-2 border-b border-gray-800 pb-10 mb-10 md:border-b-0 md:pb-0 md:mb-0">
-            <form>
-              <div class="space-y-4">
-                <!-- Input -->
-                <div class="relative">
-                  <input type="text" id="hs-tac-input-name" class="peer p-4 block w-full bg-gray-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
-                  focus:pt-6
-                  focus:pb-2
-                  [&:not(:placeholder-shown)]:pt-6
-                  [&:not(:placeholder-shown)]:pb-2
-                  autofill:pt-6
-                  autofill:pb-2" placeholder="Jina">
-                  <label for="hs-tac-input-name" class="absolute top-0 start-0 p-4 h-full text-gray-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                    peer-focus:text-xs
-                    peer-focus:-translate-y-1.5
-                    peer-focus:text-gray-400
-                    peer-[:not(:placeholder-shown)]:text-xs
-                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                    peer-[:not(:placeholder-shown)]:text-gray-400">Jina Kamili</label>
-                </div>
-                <!-- End Input -->
-
-                <!-- Input -->
-                <div class="relative">
-                  <input type="email" id="hs-tac-input-email" class="peer p-4 block w-full bg-gray-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
-                  focus:pt-6
-                  focus:pb-2
-                  [&:not(:placeholder-shown)]:pt-6
-                  [&:not(:placeholder-shown)]:pb-2
-                  autofill:pt-6
-                  autofill:pb-2" placeholder="Barua pepe(email)">
-                  <label for="hs-tac-input-email" class="absolute top-0 start-0 p-4 h-full text-gray-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                    peer-focus:text-xs
-                    peer-focus:-translate-y-1.5
-                    peer-focus:text-gray-400
-                    peer-[:not(:placeholder-shown)]:text-xs
-                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                    peer-[:not(:placeholder-shown)]:text-gray-400">Barua pepe</label>
-                </div>
-                <!-- End Input -->
-
-                <!-- Input -->
-                <div class="relative">
-                  <input type="text" id="hs-tac-input-company" class="peer p-4 block w-full bg-gray-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
-                  focus:pt-6
-                  focus:pb-2
-                  [&:not(:placeholder-shown)]:pt-6
-                  [&:not(:placeholder-shown)]:pb-2
-                  autofill:pt-6
-                  autofill:pb-2" placeholder="Kampuni(biashara yako)">
-                  <label for="hs-tac-input-company" class="absolute top-0 start-0 p-4 h-full text-gray-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                    peer-focus:text-xs
-                    peer-focus:-translate-y-1.5
-                    peer-focus:text-gray-400
-                    peer-[:not(:placeholder-shown)]:text-xs
-                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                    peer-[:not(:placeholder-shown)]:text-gray-400">Jina la biashara</label>
-                </div>
-                <!-- End Input -->
-
-                <!-- Input -->
-                <div class="relative">
-                  <input type="text" id="hs-tac-input-phone" class="peer p-4 block w-full bg-gray-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
-                  focus:pt-6
-                  focus:pb-2
-                  [&:not(:placeholder-shown)]:pt-6
-                  [&:not(:placeholder-shown)]:pb-2
-                  autofill:pt-6
-                  autofill:pb-2" placeholder="07********">
-                  <label for="hs-tac-input-phone" class="absolute top-0 start-0 p-4 h-full text-gray-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                    peer-focus:text-xs
-                    peer-focus:-translate-y-1.5
-                    peer-focus:text-gray-400
-                    peer-[:not(:placeholder-shown)]:text-xs
-                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                    peer-[:not(:placeholder-shown)]:text-gray-400">Namba ya simu</label>
-                </div>
-                <!-- End Input -->
-
-                <!-- Textarea -->
-                <div class="relative">
-                  <textarea id="hs-tac-message" class="peer p-4 block w-full bg-gray-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
-                  focus:pt-6
-                  focus:pb-2
-                  [&:not(:placeholder-shown)]:pt-6
-                  [&:not(:placeholder-shown)]:pb-2
-                  autofill:pt-6
-                  autofill:pb-2" placeholder="Andika ujumbe wako hapa"></textarea>
-                  <label for="hs-tac-message" class="absolute top-0 start-0 p-4 h-full text-gray-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                    peer-focus:text-xs
-                    peer-focus:-translate-y-1.5
-                    peer-focus:text-gray-400
-                    peer-[:not(:placeholder-shown)]:text-xs
-                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                    peer-[:not(:placeholder-shown)]:text-gray-400">Maelezo yako</label>
-                </div>
-                <!-- End Textarea -->
-              </div>
-
-              <div class="mt-2">
-                <p class="text-xs text-gray-500">
-                  Jaza sehemu zote za fomu hii
-                </p>
-
-                <p class="mt-5">
-                  <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-cyan-500 font-medium text-sm text-gray-800 rounded-full focus:outline-none" href="#">
-                    Tuma
-                    <svg class="flex-shrink-0 size-4 transition  group-hover:translate-x-0 group-focus:translate-x-0.5 " xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <a class="group inline-flex items-center gap-x-2 font-medium text-sm text-cyan-500 decoration-2 hover:underline focus:outline-none focus:underline" href="https://app.jotform.com/243172835668567">
+                    Tutumie ujumbe mfupi kupitia hiki kiunganishi
+                    <svg class="flex-shrink-0 size-4 transition group-hover:translate-x-0.5  group-focus:translate-x-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M5 12h14" />
                       <path d="m12 5 7 7-7 7" />
                     </svg>
-                  </a>
-                </p>
-              </div>
-            </form>
+              </a>
           </div>
           <!-- End Col -->
 
@@ -881,6 +774,7 @@
   <!-- JS Implementing Plugins -->
 
   <!-- JS INITIALIZATIONS -->
+  <script type="text/javascript" src="https://form.jotform.com/jsform/243172598884573"></script>
   <script>
     (function () {
       function textareaAutoHeight(el, offsetTop = 0) {
